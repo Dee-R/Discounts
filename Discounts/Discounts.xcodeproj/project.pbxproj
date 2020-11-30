@@ -15,6 +15,7 @@
 		938FE4F72574017F00D3B065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938FE4F62574017F00D3B065 /* Assets.xcassets */; };
 		938FE4FA2574017F00D3B065 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938FE4F82574017F00D3B065 /* LaunchScreen.storyboard */; };
 		93DC5540257522EA00079F3B /* DiscountsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */; };
+		93DC554D257526D800079F3B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC554C257526D800079F3B /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		93DC553D257522EA00079F3B /* DiscountsViewControllerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiscountsViewControllerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsViewControllerTest.swift; sourceTree = "<group>"; };
 		93DC5541257522EA00079F3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93DC554C257526D800079F3B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,9 +83,10 @@
 		938FE4E92574017D00D3B065 /* Discounts */ = {
 			isa = PBXGroup;
 			children = (
+				93DC5552257526E500079F3B /* Controllers */,
+				93DC554B257526CE00079F3B /* Models */,
 				938FE4EA2574017D00D3B065 /* AppDelegate.swift */,
 				938FE4EC2574017D00D3B065 /* SceneDelegate.swift */,
-				938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */,
 				938FE4F02574017D00D3B065 /* Main.storyboard */,
 				938FE4F62574017F00D3B065 /* Assets.xcassets */,
 				938FE4F82574017F00D3B065 /* LaunchScreen.storyboard */,
@@ -100,6 +103,22 @@
 				93DC5541257522EA00079F3B /* Info.plist */,
 			);
 			path = DiscountsViewControllerTest;
+			sourceTree = "<group>";
+		};
+		93DC554B257526CE00079F3B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				93DC554C257526D800079F3B /* Item.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		93DC5552257526E500079F3B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93DC554D257526D800079F3B /* Item.swift in Sources */,
 				938FE4EF2574017D00D3B065 /* DiscountsViewController.swift in Sources */,
 				938FE4EB2574017D00D3B065 /* AppDelegate.swift in Sources */,
 				938FE4F52574017D00D3B065 /* Discounts.xcdatamodeld in Sources */,

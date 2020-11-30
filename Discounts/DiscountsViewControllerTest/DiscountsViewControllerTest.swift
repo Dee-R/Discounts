@@ -12,9 +12,10 @@ class DiscountsViewControllerTest: XCTestCase {
 
     
     // start ViewLifeCycle
-    
-    func test_viewDidLoad_renderQuestionHeaderText() {
-        
+    func test_viewDidLoad_renderTitleNavigationItem() {
+        let sut = DiscountsViewController()
+        _ = sut.view // load view by call the view
+        XCTAssertEqual(sut.title, "Discounts")
     }
 }
  
