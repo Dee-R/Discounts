@@ -26,26 +26,16 @@ class EngineDiscountsTests: XCTestCase {
     }
     
     func test_CalTotalWithZero_() {
-//        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: [])
-//        sut.calculateTotal()
         _ = initSut(items: [])
-        XCTAssertEqual(deviceSpyDelegate.total, 0, "current \(deviceSpyDelegate.total), expected : 0")
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 0, "current \(deviceSpyDelegate.totalPrice), expected : 0")
     }
     func test_calTotalWith__1preTaxPriceOf10_return10() {
-        // IGPN test la POLICE
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: [Item(price: 10)])
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 10, "current \(deviceSpyDelegate.total), expected : 10")
+        _ = initSut(items: [Item(price: 10)])
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 10, "current \(deviceSpyDelegate.totalPrice), expected : 10")
     }
     func test_calTotalWith__2preTaxPriceOf10_return20() {
-        // IGPN test la POLICE
-        let rows = [
-            Item(price: 10),
-            Item(price: 10)
-        ]
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: rows)
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 20, "current \(deviceSpyDelegate.total), expected : 20")
+        _ = initSut(items: [Item(price: 10),Item(price: 10)])
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 20, "current \(deviceSpyDelegate.totalPrice), expected : 20")
     }
     func test_calTotalWith__3preTaxPriceOf10_return30() {
         // IGPN test la POLICE
@@ -54,69 +44,54 @@ class EngineDiscountsTests: XCTestCase {
             Item(price: 10),
             Item(price: 10)
         ]
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: rows)
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 30, "current \(deviceSpyDelegate.total), expected : 20")
+        _ = initSut(items: rows)
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 30, "current \(deviceSpyDelegate.totalPrice), expected : 20")
     }
     
     func test_calTotalWith__1ReductionOf10__and5percentOfTax__return5(){
-        let row = Item(price: 10, tax: 50)
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: [row])
-        
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 5)
+        _ = initSut(items: [Item(price: 10, tax: 50)])
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 5)
     }
     func test_calTotalWith__2ReductionOf10__and5percentOfTax__return10(){
-        let row = Item(price: 10, tax: 50)
-        let row2 = Item(price: 100, tax: 50)
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: [row, row2])
-        
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 55)
+        _ = initSut(items: [Item(price: 100, tax: 50), Item(price: 10, tax: 50)])
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 55)
     }
     
     func test_calTotalWith__1ReductionOf10__and0percentOfTax__return0(){
-        let row = Item(price: 10, tax: 0)
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: [row])
-        
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 10)
+        _ = initSut(items: [Item(price: 10, tax: 0)])
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 10)
     }
     func test_calTotalWith__1ReductionOf0__and0percentOfTax__return10(){
-        let row = Item(price: 0, tax: 10)
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: [row])
-        
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 0)
+        _ = initSut(items: [Item(price: 0, tax: 10)])
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 0)
     }
     func test_calTotalWith__1ReductionOf0__and0percentOfTax__return0(){
-        let row = Item(price: 0, tax: 0)
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: [row])
-        
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 0)
+        _ = initSut(items: [Item(price: 0, tax: 0)])
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 0)
     }
     func test_calTotalWith__2ReductionOf0__and0percentOfTax__return0(){
-        let row = Item(price: 0, tax: 0)
-        let row2 = Item(price: 0, tax: 0)
-        let sut = EngineDiscounts(delegate: deviceSpyDelegate, items: [row, row2])
-        
-        sut.calculateTotal()
-        XCTAssertEqual(deviceSpyDelegate.total, 0)
+        _ = initSut(items: [Item(price: 0, tax: 0), Item(price: 0, tax: 0)])
+        XCTAssertEqual(deviceSpyDelegate.totalPrice, 0)
     }
     
     func test_calDiscWith__1reductionOf10__and5percentOfTax__return5(){
-        
+        _ = initSut(items: [
+            Item(price: 50, tax: 90),
+            Item(price: 100, tax: 50),
+        ])
+        XCTAssertEqual(deviceSpyDelegate.totalTaxPrice, 95)
     }
     
     // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬
     
     // CITOYEN
     class DeviceSpy: EngineDiscountDelegate {
-        var total: Float = 0
+        var totalPrice: Float = 0
+        var totalTaxPrice: Float = 0
         
-        func showResultWith(sum: Float) {
-            total = sum
+        func showResultWith(sum: Float, sumTax: Float) {
+            totalPrice = sum
+            totalTaxPrice = sumTax
         }
     }
 }

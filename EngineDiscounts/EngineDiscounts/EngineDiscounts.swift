@@ -11,9 +11,9 @@ import Foundation
 
 // can have many implementation (iOS, iPad, iWatch, TVos )
 protocol EngineDiscountDelegate {
-    func showResultWith(sum: Float)
+    func showResultWith(sum: Float, sumTax:Float)
 }
-// POLICE
+// PL
 class EngineDiscounts {
     var items: [Item]
     var delegate: EngineDiscountDelegate
@@ -24,13 +24,14 @@ class EngineDiscounts {
     }
     func calculateTotal() {
         if !items.isEmpty {
-            var localPrice : Float = 0
+            var localPrices : Float = 0
             var localDiscount: Float = 0
+            
             for i in 0...items.count-1 {
-                localPrice += (items[i].price) - (items[i].price * (items[i].tax / 100))
-                localDiscount += (items[i].tax / 100)
+                localPrices += (items[i].price) - (items[i].price * (items[i].tax / 100))
+                localDiscount += items[i].price * (items[i].tax / 100)
             }
-            delegate.showResultWith(sum: localPrice)
+            delegate.showResultWith(sum: localPrices, sumTax: localDiscount)
         }
     }
 }
