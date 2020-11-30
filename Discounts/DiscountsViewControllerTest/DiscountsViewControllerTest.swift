@@ -42,5 +42,14 @@ class DiscountsViewControllerTest: XCTestCase {
         _ = sut.view // call viewDidLoad
         XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 1)
     }
+    func test_viewDidLoad_renderPrice_OneRow() {
+        sut = DiscountsViewController.initItemsVC(items: [
+            Item(price: 0, tax: 0),
+        ])
+        _ = sut.view // call viewDidLoad
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath)
+        XCTAssertEqual(cell?.textLabel?.text, "0.0")
+    }
 }
  
