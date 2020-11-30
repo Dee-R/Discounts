@@ -13,11 +13,14 @@ class DiscountsViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     var items = [Item]()
     var vc: DiscountsViewController!
-    private let reuseIdentifierCell = "CeLL"
+    private let reuseIdentifierCell = "cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Discounts"
+        
+        let nibname = UINib(nibName: "DiscountsCell", bundle: nil)
+        tableView.register(nibname, forCellReuseIdentifier: "DiscountsCell")
     }
     
     static func initItemsVC(items: [Item]) -> DiscountsViewController {
@@ -34,11 +37,13 @@ class DiscountsViewController: UIViewController, UITableViewDataSource {
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return 2
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = dequeueCell(in: tableView)
-        cell.textLabel?.text = String(items[indexPath.row].price)
+//        let cell = dequeueCell(in: tableView)
+//        cell.textLabel?.text = String(items[indexPath.row].price)
+//        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountsCell", for: indexPath) as! DiscountsCell
         return cell
     }
     

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931DF470257567870047913B /* DIscountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931DF46F257567870047913B /* DIscountsTableViewCell.swift */; };
+		931DF47425756B180047913B /* TaxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931DF47325756B180047913B /* TaxButton.swift */; };
+		9372A7C6257577560051C09B /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9372A7C5257577560051C09B /* RowView.swift */; };
+		9372A7E3257581290051C09B /* DiscountsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9372A7E1257581290051C09B /* DiscountsCell.swift */; };
+		9372A7E4257581290051C09B /* DiscountsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9372A7E2257581290051C09B /* DiscountsCell.xib */; };
 		938FE4EB2574017D00D3B065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4EA2574017D00D3B065 /* AppDelegate.swift */; };
 		938FE4ED2574017D00D3B065 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4EC2574017D00D3B065 /* SceneDelegate.swift */; };
 		938FE4EF2574017D00D3B065 /* DiscountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */; };
@@ -29,6 +34,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		931DF46F257567870047913B /* DIscountsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIscountsTableViewCell.swift; sourceTree = "<group>"; };
+		931DF47325756B180047913B /* TaxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxButton.swift; sourceTree = "<group>"; };
+		9372A7C5257577560051C09B /* RowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
+		9372A7E1257581290051C09B /* DiscountsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsCell.swift; sourceTree = "<group>"; };
+		9372A7E2257581290051C09B /* DiscountsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscountsCell.xib; sourceTree = "<group>"; };
 		938FE4E72574017D00D3B065 /* Discounts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discounts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		938FE4EA2574017D00D3B065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		938FE4EC2574017D00D3B065 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +72,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		931DF4662575656E0047913B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9372A7C5257577560051C09B /* RowView.swift */,
+				931DF46F257567870047913B /* DIscountsTableViewCell.swift */,
+				931DF47325756B180047913B /* TaxButton.swift */,
+				9372A7E1257581290051C09B /* DiscountsCell.swift */,
+				9372A7E2257581290051C09B /* DiscountsCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		938FE4DE2574017D00D3B065 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +105,7 @@
 		938FE4E92574017D00D3B065 /* Discounts */ = {
 			isa = PBXGroup;
 			children = (
+				931DF4662575656E0047913B /* Views */,
 				93DC5552257526E500079F3B /* Controllers */,
 				93DC554B257526CE00079F3B /* Models */,
 				938FE4EA2574017D00D3B065 /* AppDelegate.swift */,
@@ -203,6 +226,7 @@
 			files = (
 				938FE4FA2574017F00D3B065 /* LaunchScreen.storyboard in Resources */,
 				938FE4F72574017F00D3B065 /* Assets.xcassets in Resources */,
+				9372A7E4257581290051C09B /* DiscountsCell.xib in Resources */,
 				938FE4F22574017D00D3B065 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,9 +245,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931DF470257567870047913B /* DIscountsTableViewCell.swift in Sources */,
 				93DC554D257526D800079F3B /* Item.swift in Sources */,
 				938FE4EF2574017D00D3B065 /* DiscountsViewController.swift in Sources */,
+				9372A7C6257577560051C09B /* RowView.swift in Sources */,
 				938FE4EB2574017D00D3B065 /* AppDelegate.swift in Sources */,
+				931DF47425756B180047913B /* TaxButton.swift in Sources */,
+				9372A7E3257581290051C09B /* DiscountsCell.swift in Sources */,
 				938FE4F52574017D00D3B065 /* Discounts.xcdatamodeld in Sources */,
 				938FE4ED2574017D00D3B065 /* SceneDelegate.swift in Sources */,
 			);
