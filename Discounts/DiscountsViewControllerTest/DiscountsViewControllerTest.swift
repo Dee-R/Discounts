@@ -21,35 +21,32 @@ class DiscountsViewControllerTest: XCTestCase {
     
     // start ViewLifeCycle
     func test_viewDidLoad_renderTitleNavigationItem() {
-        sut = DiscountsViewController.initItemsVC(items: [])
-        _ = sut.view // call viewDidLoad
+        let sut = makeSut(items: [])
         XCTAssertEqual(sut.title, "Discounts")
     }
     func test_viewDidLoad_renderTableView() {
-        sut = DiscountsViewController.initItemsVC(items: [])
-        _ = sut.view // call viewDidLoad
+        let sut = makeSut(items: [])
         XCTAssertNotNil(sut.tableView)
     }
     func test_viewDidLoad_renderTableView_Empty() {
-        sut = DiscountsViewController.initItemsVC(items: [])
-        _ = sut.view // call viewDidLoad
+        let sut = makeSut(items: [])
         XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 0)
     }
     func test_viewDidLoad_renderTableView_OneRow() {
-        sut = DiscountsViewController.initItemsVC(items: [
-            Item(price: 0, tax: 0),
-        ])
-        _ = sut.view // call viewDidLoad
+        let sut = makeSut(items: [Item(price: 0, tax: 0)])
         XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 1)
     }
     func test_viewDidLoad_renderPrice_OneRow() {
-        sut = DiscountsViewController.initItemsVC(items: [
-            Item(price: 0, tax: 0),
-        ])
-        _ = sut.view // call viewDidLoad
+        let sut = makeSut(items: [Item(price: 0, tax: 0)])
         let indexPath = IndexPath(row: 0, section: 0)
         let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath)
         XCTAssertEqual(cell?.textLabel?.text, "0.0")
+    }
+    
+    func makeSut(items: [Item]) -> DiscountsViewController {
+        let sut = DiscountsViewController.initItemsVC(items: items)
+        _ = sut.view // call viewDidLoad
+        return sut
     }
 }
  
