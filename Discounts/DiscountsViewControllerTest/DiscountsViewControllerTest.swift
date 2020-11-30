@@ -38,15 +38,22 @@ class DiscountsViewControllerTest: XCTestCase {
     }
     func test_viewDidLoad_renderPrice_OneRow() {
         let sut = makeSut(items: [Item(price: 0, tax: 0)])
-        let indexPath = IndexPath(row: 0, section: 0)
-        let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath)
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath)
+        let cell = sut.tableView.cell(at: 0)
         XCTAssertEqual(cell?.textLabel?.text, "0.0")
     }
     
+    // MARK: - Helpers
     func makeSut(items: [Item]) -> DiscountsViewController {
         let sut = DiscountsViewController.initItemsVC(items: items)
         _ = sut.view // call viewDidLoad
         return sut
     }
 }
- 
+
+private extension UITableView {
+    func cell(at row: Int) -> UITableViewCell? {
+        return self.dataSource?.tableView(self, cellForRowAt: IndexPath(row: row, section: 0))
+    }
+}
