@@ -5,16 +5,9 @@
 //  Created by Eddy R on 29/11/2020.
 //
 
-// IGPN test la police
-
 import XCTest
 @testable import EngineDiscounts
 
-
-
-
-
-// IGPN
 class EngineDiscountsTests: XCTestCase {
     
     let deviceSpyDelegate = DeviceSpy()
@@ -74,17 +67,24 @@ class EngineDiscountsTests: XCTestCase {
         XCTAssertEqual(deviceSpyDelegate.totalPrice, 0)
     }
     
-    func test_calDiscWith__1reductionOf10__and5percentOfTax__return5(){
+    func test_calDiscWith__2DifferentreductionOf50and100__and90and50percentOfTax__return95(){
         _ = initSut(items: [
             Item(price: 50, tax: 90),
             Item(price: 100, tax: 50),
         ])
         XCTAssertEqual(deviceSpyDelegate.totalTaxPrice, 95)
     }
+    func test_calDiscWith__2DifferentreductionOf50and100and100__and90and50and0percentOfTax__return95(){
+        _ = initSut(items: [
+            Item(price: 50, tax: 90),
+            Item(price: 100, tax: 50),
+            Item(price: 100, tax: 100),
+        ])
+        XCTAssertEqual(deviceSpyDelegate.totalTaxPrice, 195)
+    }
+    
     
     // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬
-    
-    // CITOYEN
     class DeviceSpy: EngineDiscountDelegate {
         var totalPrice: Float = 0
         var totalTaxPrice: Float = 0

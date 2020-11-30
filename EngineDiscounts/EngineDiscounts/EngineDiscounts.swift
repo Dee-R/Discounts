@@ -4,16 +4,13 @@
 //
 //  Created by Eddy R on 29/11/2020.
 //
-
 import Foundation
-
-
 
 // can have many implementation (iOS, iPad, iWatch, TVos )
 protocol EngineDiscountDelegate {
     func showResultWith(sum: Float, sumTax:Float)
 }
-// PL
+
 class EngineDiscounts {
     var items: [Item]
     var delegate: EngineDiscountDelegate
