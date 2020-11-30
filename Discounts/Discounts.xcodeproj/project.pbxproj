@@ -9,24 +9,16 @@
 /* Begin PBXBuildFile section */
 		938FE4EB2574017D00D3B065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4EA2574017D00D3B065 /* AppDelegate.swift */; };
 		938FE4ED2574017D00D3B065 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4EC2574017D00D3B065 /* SceneDelegate.swift */; };
-		938FE4EF2574017D00D3B065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4EE2574017D00D3B065 /* ViewController.swift */; };
+		938FE4EF2574017D00D3B065 /* DiscountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */; };
 		938FE4F22574017D00D3B065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938FE4F02574017D00D3B065 /* Main.storyboard */; };
 		938FE4F52574017D00D3B065 /* Discounts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4F32574017D00D3B065 /* Discounts.xcdatamodeld */; };
 		938FE4F72574017F00D3B065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938FE4F62574017F00D3B065 /* Assets.xcassets */; };
 		938FE4FA2574017F00D3B065 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938FE4F82574017F00D3B065 /* LaunchScreen.storyboard */; };
-		938FE5052574018000D3B065 /* DiscountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE5042574018000D3B065 /* DiscountsTests.swift */; };
-		938FE5102574018000D3B065 /* DiscountsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938FE50F2574018000D3B065 /* DiscountsUITests.swift */; };
+		93DC5540257522EA00079F3B /* DiscountsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		938FE5012574017F00D3B065 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 938FE4DF2574017D00D3B065 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 938FE4E62574017D00D3B065;
-			remoteInfo = Discounts;
-		};
-		938FE50C2574018000D3B065 /* PBXContainerItemProxy */ = {
+		93DC5542257522EA00079F3B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 938FE4DF2574017D00D3B065 /* Project object */;
 			proxyType = 1;
@@ -39,18 +31,15 @@
 		938FE4E72574017D00D3B065 /* Discounts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discounts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		938FE4EA2574017D00D3B065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		938FE4EC2574017D00D3B065 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		938FE4EE2574017D00D3B065 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsViewController.swift; sourceTree = "<group>"; };
 		938FE4F12574017D00D3B065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		938FE4F42574017D00D3B065 /* Discounts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Discounts.xcdatamodel; sourceTree = "<group>"; };
 		938FE4F62574017F00D3B065 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		938FE4F92574017F00D3B065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		938FE4FB2574017F00D3B065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		938FE5002574017F00D3B065 /* DiscountsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiscountsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		938FE5042574018000D3B065 /* DiscountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsTests.swift; sourceTree = "<group>"; };
-		938FE5062574018000D3B065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		938FE50B2574018000D3B065 /* DiscountsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiscountsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		938FE50F2574018000D3B065 /* DiscountsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsUITests.swift; sourceTree = "<group>"; };
-		938FE5112574018000D3B065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93DC553D257522EA00079F3B /* DiscountsViewControllerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiscountsViewControllerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsViewControllerTest.swift; sourceTree = "<group>"; };
+		93DC5541257522EA00079F3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +50,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		938FE4FD2574017F00D3B065 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		938FE5082574018000D3B065 /* Frameworks */ = {
+		93DC553A257522EA00079F3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,8 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				938FE4E92574017D00D3B065 /* Discounts */,
-				938FE5032574017F00D3B065 /* DiscountsTests */,
-				938FE50E2574018000D3B065 /* DiscountsUITests */,
+				93DC553E257522EA00079F3B /* DiscountsViewControllerTest */,
 				938FE4E82574017D00D3B065 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,8 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				938FE4E72574017D00D3B065 /* Discounts.app */,
-				938FE5002574017F00D3B065 /* DiscountsTests.xctest */,
-				938FE50B2574018000D3B065 /* DiscountsUITests.xctest */,
+				93DC553D257522EA00079F3B /* DiscountsViewControllerTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,7 +83,7 @@
 			children = (
 				938FE4EA2574017D00D3B065 /* AppDelegate.swift */,
 				938FE4EC2574017D00D3B065 /* SceneDelegate.swift */,
-				938FE4EE2574017D00D3B065 /* ViewController.swift */,
+				938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */,
 				938FE4F02574017D00D3B065 /* Main.storyboard */,
 				938FE4F62574017F00D3B065 /* Assets.xcassets */,
 				938FE4F82574017F00D3B065 /* LaunchScreen.storyboard */,
@@ -113,22 +93,13 @@
 			path = Discounts;
 			sourceTree = "<group>";
 		};
-		938FE5032574017F00D3B065 /* DiscountsTests */ = {
+		93DC553E257522EA00079F3B /* DiscountsViewControllerTest */ = {
 			isa = PBXGroup;
 			children = (
-				938FE5042574018000D3B065 /* DiscountsTests.swift */,
-				938FE5062574018000D3B065 /* Info.plist */,
+				93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */,
+				93DC5541257522EA00079F3B /* Info.plist */,
 			);
-			path = DiscountsTests;
-			sourceTree = "<group>";
-		};
-		938FE50E2574018000D3B065 /* DiscountsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				938FE50F2574018000D3B065 /* DiscountsUITests.swift */,
-				938FE5112574018000D3B065 /* Info.plist */,
-			);
-			path = DiscountsUITests;
+			path = DiscountsViewControllerTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,41 +122,23 @@
 			productReference = 938FE4E72574017D00D3B065 /* Discounts.app */;
 			productType = "com.apple.product-type.application";
 		};
-		938FE4FF2574017F00D3B065 /* DiscountsTests */ = {
+		93DC553C257522EA00079F3B /* DiscountsViewControllerTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 938FE5172574018000D3B065 /* Build configuration list for PBXNativeTarget "DiscountsTests" */;
+			buildConfigurationList = 93DC5544257522EA00079F3B /* Build configuration list for PBXNativeTarget "DiscountsViewControllerTest" */;
 			buildPhases = (
-				938FE4FC2574017F00D3B065 /* Sources */,
-				938FE4FD2574017F00D3B065 /* Frameworks */,
-				938FE4FE2574017F00D3B065 /* Resources */,
+				93DC5539257522EA00079F3B /* Sources */,
+				93DC553A257522EA00079F3B /* Frameworks */,
+				93DC553B257522EA00079F3B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				938FE5022574017F00D3B065 /* PBXTargetDependency */,
+				93DC5543257522EA00079F3B /* PBXTargetDependency */,
 			);
-			name = DiscountsTests;
-			productName = DiscountsTests;
-			productReference = 938FE5002574017F00D3B065 /* DiscountsTests.xctest */;
+			name = DiscountsViewControllerTest;
+			productName = DiscountsViewControllerTest;
+			productReference = 93DC553D257522EA00079F3B /* DiscountsViewControllerTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		938FE50A2574018000D3B065 /* DiscountsUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 938FE51A2574018000D3B065 /* Build configuration list for PBXNativeTarget "DiscountsUITests" */;
-			buildPhases = (
-				938FE5072574018000D3B065 /* Sources */,
-				938FE5082574018000D3B065 /* Frameworks */,
-				938FE5092574018000D3B065 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				938FE50D2574018000D3B065 /* PBXTargetDependency */,
-			);
-			name = DiscountsUITests;
-			productName = DiscountsUITests;
-			productReference = 938FE50B2574018000D3B065 /* DiscountsUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -199,11 +152,7 @@
 					938FE4E62574017D00D3B065 = {
 						CreatedOnToolsVersion = 12.2;
 					};
-					938FE4FF2574017F00D3B065 = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 938FE4E62574017D00D3B065;
-					};
-					938FE50A2574018000D3B065 = {
+					93DC553C257522EA00079F3B = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 938FE4E62574017D00D3B065;
 					};
@@ -223,8 +172,7 @@
 			projectRoot = "";
 			targets = (
 				938FE4E62574017D00D3B065 /* Discounts */,
-				938FE4FF2574017F00D3B065 /* DiscountsTests */,
-				938FE50A2574018000D3B065 /* DiscountsUITests */,
+				93DC553C257522EA00079F3B /* DiscountsViewControllerTest */,
 			);
 		};
 /* End PBXProject section */
@@ -240,14 +188,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		938FE4FE2574017F00D3B065 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		938FE5092574018000D3B065 /* Resources */ = {
+		93DC553B257522EA00079F3B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,41 +202,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				938FE4EF2574017D00D3B065 /* ViewController.swift in Sources */,
+				938FE4EF2574017D00D3B065 /* DiscountsViewController.swift in Sources */,
 				938FE4EB2574017D00D3B065 /* AppDelegate.swift in Sources */,
 				938FE4F52574017D00D3B065 /* Discounts.xcdatamodeld in Sources */,
 				938FE4ED2574017D00D3B065 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		938FE4FC2574017F00D3B065 /* Sources */ = {
+		93DC5539257522EA00079F3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				938FE5052574018000D3B065 /* DiscountsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		938FE5072574018000D3B065 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				938FE5102574018000D3B065 /* DiscountsUITests.swift in Sources */,
+				93DC5540257522EA00079F3B /* DiscountsViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		938FE5022574017F00D3B065 /* PBXTargetDependency */ = {
+		93DC5543257522EA00079F3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 938FE4E62574017D00D3B065 /* Discounts */;
-			targetProxy = 938FE5012574017F00D3B065 /* PBXContainerItemProxy */;
-		};
-		938FE50D2574018000D3B065 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 938FE4E62574017D00D3B065 /* Discounts */;
-			targetProxy = 938FE50C2574018000D3B065 /* PBXContainerItemProxy */;
+			targetProxy = 93DC5542257522EA00079F3B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -471,20 +399,18 @@
 			};
 			name = Release;
 		};
-		938FE5182574018000D3B065 /* Debug */ = {
+		93DC5545257522EA00079F3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DiscountsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				INFOPLIST_FILE = DiscountsViewControllerTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Dee-R.DiscountsTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "Dee-R.DiscountsViewControllerTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -492,62 +418,22 @@
 			};
 			name = Debug;
 		};
-		938FE5192574018000D3B065 /* Release */ = {
+		93DC5546257522EA00079F3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DiscountsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				INFOPLIST_FILE = DiscountsViewControllerTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Dee-R.DiscountsTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "Dee-R.DiscountsViewControllerTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Discounts.app/Discounts";
-			};
-			name = Release;
-		};
-		938FE51B2574018000D3B065 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DiscountsUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Dee-R.DiscountsUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Discounts;
-			};
-			name = Debug;
-		};
-		938FE51C2574018000D3B065 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DiscountsUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Dee-R.DiscountsUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Discounts;
 			};
 			name = Release;
 		};
@@ -572,20 +458,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		938FE5172574018000D3B065 /* Build configuration list for PBXNativeTarget "DiscountsTests" */ = {
+		93DC5544257522EA00079F3B /* Build configuration list for PBXNativeTarget "DiscountsViewControllerTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				938FE5182574018000D3B065 /* Debug */,
-				938FE5192574018000D3B065 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		938FE51A2574018000D3B065 /* Build configuration list for PBXNativeTarget "DiscountsUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				938FE51B2574018000D3B065 /* Debug */,
-				938FE51C2574018000D3B065 /* Release */,
+				93DC5545257522EA00079F3B /* Debug */,
+				93DC5546257522EA00079F3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
