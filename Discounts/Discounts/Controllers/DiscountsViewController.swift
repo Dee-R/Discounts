@@ -11,13 +11,12 @@ import UIKit
 class DiscountsViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    var items: [Item] = []
+    var items = [Item]()
     var vc: DiscountsViewController!
+    private let reuseIdentifierCell = "CeLL"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
-        // Do any additional setup after loading the view.
         self.title = "Discounts"
     }
     
@@ -25,23 +24,31 @@ class DiscountsViewController: UIViewController, UITableViewDataSource {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "DiscountsViewController") as! DiscountsViewController
         vc.items = items
-        print(items)
         return vc
     }
-//    convenience init(items: [Item]) {
+    //convenience init(items: [Item]) {
 //        self.init()
 //        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
 //        // init parameter from convenience
 //    }
     
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = dequeueCell(in: tableView)
         cell.textLabel?.text = String(items[indexPath.row].price)
         return cell
+    }
+    
+    // MARK: - Helper
+    private func dequeueCell(in tableView: UITableView) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierCell) {
+            return cell
+        }
+        return UITableViewCell(style: .default, reuseIdentifier: reuseIdentifierCell)
+        
     }
     
 }
