@@ -9,24 +9,24 @@ import UIKit
 
 @IBDesignable
 class DiscountsCell: UITableViewCell {
-
-    @IBOutlet weak var viewCell: UIView!
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var viewRow: UIView!
+    
+    @IBOutlet weak var rowView: UIView!
+    @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var taxButton: UIButton!
+    @IBOutlet weak var priceTextField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 //        myicon = (self.contentView.viewWithTag(1) as! UIImageView)
         setup()
+        priceTextField.keyboardType = UIKeyboardType.decimalPad
     }
     
     
     
     func setup() {
-        iconImageView.alpha = 1
-        viewRow.layer.cornerRadius = 20
-        
+        rowView.layer.cornerRadius = 20
     }
     
 

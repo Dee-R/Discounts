@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930CCA21257676F50078EC54 /* DiscountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930CCA20257676F50078EC54 /* DiscountCell.swift */; };
 		931DF470257567870047913B /* DIscountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931DF46F257567870047913B /* DIscountsTableViewCell.swift */; };
 		931DF47425756B180047913B /* TaxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931DF47325756B180047913B /* TaxButton.swift */; };
 		9372A7C6257577560051C09B /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9372A7C5257577560051C09B /* RowView.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		930CCA20257676F50078EC54 /* DiscountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCell.swift; sourceTree = "<group>"; };
 		931DF46F257567870047913B /* DIscountsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIscountsTableViewCell.swift; sourceTree = "<group>"; };
 		931DF47325756B180047913B /* TaxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxButton.swift; sourceTree = "<group>"; };
 		9372A7C5257577560051C09B /* RowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				931DF47325756B180047913B /* TaxButton.swift */,
 				9372A7E1257581290051C09B /* DiscountsCell.swift */,
 				9372A7E2257581290051C09B /* DiscountsCell.xib */,
+				930CCA20257676F50078EC54 /* DiscountCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			files = (
 				931DF470257567870047913B /* DIscountsTableViewCell.swift in Sources */,
 				93DC554D257526D800079F3B /* Item.swift in Sources */,
+				930CCA21257676F50078EC54 /* DiscountCell.swift in Sources */,
 				938FE4EF2574017D00D3B065 /* DiscountsViewController.swift in Sources */,
 				9372A7C6257577560051C09B /* RowView.swift in Sources */,
 				938FE4EB2574017D00D3B065 /* AppDelegate.swift in Sources */,

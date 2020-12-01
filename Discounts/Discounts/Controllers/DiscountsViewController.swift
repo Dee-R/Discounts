@@ -18,9 +18,6 @@ class DiscountsViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Discounts"
-        
-        let nibname = UINib(nibName: "DiscountsCell", bundle: nil)
-        tableView.register(nibname, forCellReuseIdentifier: "DiscountsCell")
     }
     
     static func initItemsVC(items: [Item]) -> DiscountsViewController {
@@ -29,11 +26,6 @@ class DiscountsViewController: UIViewController, UITableViewDataSource {
         vc.items = items
         return vc
     }
-    //convenience init(items: [Item]) {
-//        self.init()
-//        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
-//        // init parameter from convenience
-//    }
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,7 +35,9 @@ class DiscountsViewController: UIViewController, UITableViewDataSource {
 //        let cell = dequeueCell(in: tableView)
 //        cell.textLabel?.text = String(items[indexPath.row].price)
 //        return cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountsCell", for: indexPath) as! DiscountsCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
+        print(cell.priceTextField.text)
         return cell
     }
     

@@ -31,10 +31,10 @@
                                         </constraints>
                                         <state key="normal" title="-15%" backgroundImage="labelIcon"/>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.00 €" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cM8-u7-FO0" userLabel="PriceTextField">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="0.00 €" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="cM8-u7-FO0" userLabel="PriceTextField">
                                         <rect key="frame" x="59" y="6" width="280" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buy" translatesAutoresizingMaskIntoConstraints="NO" id="qV9-96-bee" userLabel="IconImage">
                                         <rect key="frame" x="5" y="6" width="49" height="48"/>
@@ -78,9 +78,10 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="iconImageView" destination="qV9-96-bee" id="88s-q2-jDC"/>
-                <outlet property="viewCell" destination="qPf-D3-1Vh" id="rnI-MN-Xhg"/>
-                <outlet property="viewRow" destination="fyL-NE-MEk" id="Cnt-w8-uNW"/>
+                <outlet property="iconImage" destination="qV9-96-bee" id="07o-lg-RrK"/>
+                <outlet property="priceTextField" destination="cM8-u7-FO0" id="m0C-aY-fi1"/>
+                <outlet property="rowView" destination="fyL-NE-MEk" id="Pan-JG-701"/>
+                <outlet property="taxButton" destination="kQM-Ce-TWI" id="xQu-2q-hEa"/>
             </connections>
             <point key="canvasLocation" x="213.04347826086959" y="118.52678571428571"/>
         </tableViewCell>
