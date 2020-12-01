@@ -15,17 +15,23 @@ class DiscountsViewController: UIViewController, UITableViewDataSource {
     var vc: DiscountsViewController!
     private let reuseIdentifierCell = "cell"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Discounts"
-    }
-    
     static func initItemsVC(items: [Item]) -> DiscountsViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "DiscountsViewController") as! DiscountsViewController
         vc.items = items
         return vc
     }
+    
+    // MARK: - cycle life
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Discounts"
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

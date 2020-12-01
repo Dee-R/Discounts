@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,11 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fgh-C7-NCe">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fgh-C7-NCe">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DiscountCell" rowHeight="70" id="5pO-f5-AK4" customClass="DiscountCell" customModule="Discounts" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="DiscountCell" rowHeight="70" id="5pO-f5-AK4" customClass="DiscountCell" customModule="Discounts" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5pO-f5-AK4" id="AI1-dt-DBw">
@@ -28,10 +27,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFq-yi-azT" userLabel="bgview">
-                                                    <rect key="frame" x="20" y="8" width="374" height="54"/>
-                                                    <color key="backgroundColor" systemColor="systemTealColor"/>
+                                                    <rect key="frame" x="20" y="6" width="374" height="58"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.00€" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jxG-xo-M1G">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00€" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jxG-xo-M1G">
                                                     <rect key="frame" x="76" y="11" width="236" height="48"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -43,7 +42,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQk-wp-IaC">
-                                                    <rect key="frame" x="320" y="0.0" width="74" height="65"/>
+                                                    <rect key="frame" x="320" y="0.0" width="74" height="70"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="74" id="dkX-qU-Wmv"/>
                                                     </constraints>
@@ -58,11 +57,11 @@
                                                 <constraint firstItem="jxG-xo-M1G" firstAttribute="leading" secondItem="fcl-az-yQw" secondAttribute="trailing" constant="10" id="0mQ-EF-RXS"/>
                                                 <constraint firstItem="fcl-az-yQw" firstAttribute="leading" secondItem="AI1-dt-DBw" secondAttribute="leadingMargin" id="3HH-Bt-uff"/>
                                                 <constraint firstItem="jxG-xo-M1G" firstAttribute="top" secondItem="AI1-dt-DBw" secondAttribute="topMargin" id="3Ol-Fx-huu"/>
-                                                <constraint firstItem="gFq-yi-azT" firstAttribute="top" secondItem="AI1-dt-DBw" secondAttribute="topMargin" constant="-3" id="5cv-iJ-7MN"/>
-                                                <constraint firstItem="gFq-yi-azT" firstAttribute="bottom" secondItem="AI1-dt-DBw" secondAttribute="bottomMargin" constant="3" id="6tg-Be-1HW"/>
+                                                <constraint firstItem="gFq-yi-azT" firstAttribute="top" secondItem="AI1-dt-DBw" secondAttribute="topMargin" constant="-5" id="5cv-iJ-7MN"/>
+                                                <constraint firstItem="gFq-yi-azT" firstAttribute="bottom" secondItem="AI1-dt-DBw" secondAttribute="bottomMargin" constant="5" id="6tg-Be-1HW"/>
                                                 <constraint firstItem="JQk-wp-IaC" firstAttribute="leading" secondItem="jxG-xo-M1G" secondAttribute="trailing" constant="8" symbolic="YES" id="AHO-TE-hcx"/>
                                                 <constraint firstItem="JQk-wp-IaC" firstAttribute="trailing" secondItem="AI1-dt-DBw" secondAttribute="trailingMargin" id="LBz-hC-vjU"/>
-                                                <constraint firstItem="JQk-wp-IaC" firstAttribute="bottom" secondItem="AI1-dt-DBw" secondAttribute="bottomMargin" constant="6" id="WDP-UF-En3"/>
+                                                <constraint firstItem="JQk-wp-IaC" firstAttribute="bottom" secondItem="AI1-dt-DBw" secondAttribute="bottomMargin" constant="11" id="WDP-UF-En3"/>
                                                 <constraint firstItem="JQk-wp-IaC" firstAttribute="top" secondItem="AI1-dt-DBw" secondAttribute="topMargin" constant="-11" id="kiX-0j-Re2"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fcl-az-yQw" secondAttribute="bottom" id="m3E-h3-Ds6"/>
                                                 <constraint firstItem="gFq-yi-azT" firstAttribute="trailing" secondItem="AI1-dt-DBw" secondAttribute="trailingMargin" id="rWq-82-cAL"/>
@@ -70,6 +69,7 @@
                                                 <constraint firstItem="fcl-az-yQw" firstAttribute="top" secondItem="AI1-dt-DBw" secondAttribute="topMargin" id="zK6-XV-3QU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bgView" destination="gFq-yi-azT" id="zYd-CA-ZFY"/>
                                             <outlet property="priceTextField" destination="jxG-xo-M1G" id="vD8-B7-jNf"/>
@@ -82,7 +82,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.95338403514588865" green="0.93731576489062085" blue="0.93731576489062085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fgh-C7-NCe" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="1T9-qT-aoT"/>
                             <constraint firstItem="fgh-C7-NCe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FjP-F3-qOU"/>
@@ -90,7 +90,11 @@
                             <constraint firstItem="fgh-C7-NCe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WC9-Aw-PKS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="h8g-Zg-SsJ"/>
+                    <navigationItem key="navigationItem" id="h8g-Zg-SsJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Y1h-Ql-Xg5">
+                            <color key="tintColor" red="0.97758299110000002" green="0.67782145739999999" blue="0.69496011729999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="fgh-C7-NCe" id="eiL-Yf-tgb"/>
                     </connections>
@@ -107,6 +111,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bTm-gJ-l49">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.98492902520000003" green="0.96955138439999999" blue="0.96915191410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" red="0.97758299110000002" green="0.67782145739999999" blue="0.69496011729999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -121,11 +130,5 @@
     <resources>
         <image name="buy" width="49" height="44.5"/>
         <image name="labelIcon" width="126.5" height="91"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>
