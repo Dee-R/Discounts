@@ -25,7 +25,8 @@ class DiscountsCell: UITableViewCell {
     
     func setup() {
         iconImageView.alpha = 1
-        viewRow.layer.cornerRadius = 25
+        viewRow.layer.cornerRadius = 20
+        
     }
     
 
