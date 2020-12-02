@@ -50,7 +50,7 @@ class EngineDiscountsTests: XCTestCase {
         XCTAssertEqual(deviceSpyDelegate.totalPrice, 55)
     }
     
-    func test_calTotalWith__1ReductionOf10__and0percentOfTax_ _return0(){
+    func test_calTotalWith__1ReductionOf10__and0percentOfTax__return0(){
         _ = initSut(items: [Item(price: 10, tax: 0)])
         XCTAssertEqual(deviceSpyDelegate.totalPrice, 10)
     }

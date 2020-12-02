@@ -8,13 +8,12 @@
 import UIKit
 
 class DiscountCell: UITableViewCell, UITextFieldDelegate {
-
-    
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var bgView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
         // Initialization code
         bgView.layer.cornerRadius = 18
         self.priceTextField.delegate = self
@@ -24,6 +23,10 @@ class DiscountCell: UITableViewCell, UITextFieldDelegate {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+    
+    
+    
+    
     
    
 

@@ -28,19 +28,26 @@ class DiscountsViewControllerTest: XCTestCase {
         let sut = makeSut(items: [])
         XCTAssertNotNil(sut.tableView)
     }
-    func test_viewDidLoad_renderTableView_Empty() {
-        let sut = makeSut(items: [])
-        XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 0)
-    }
+//    func test_viewDidLoad_renderTableView_Empty() {
+//        let sut = makeSut(items: [])
+//        XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 0)
+//    }
     func test_viewDidLoad_renderTableView_OneRow() {
         let sut = makeSut(items: [Item(price: 0, tax: 0)])
         XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 1)
     }
-    func test_viewDidLoad_renderPrice_OneRow() {
-        let sut = makeSut(items: [Item(price: 0, tax: 0)])
-        let cell = sut.tableView.cell(at: 0)
-        XCTAssertEqual(cell?.textLabel?.text, "0.0")
+//    func test_viewDidLoad_renderPrice_OneRow() {
+//        let sut = makeSut(items: [Item(price: 0, tax: 0)])
+//        let cell = sut.tableView.cell(at: 0)
+//        XCTAssertEqual(cell?.textLabel?.text, "0.0")
+//    }
+
+    func test_footer_setValueOfPriceAndTaxBy_zero() {
+        let sut = makeSut(items: [])
+        let cell = sut.tableView.cell(at: 0) as! DiscountCell
+        XCTAssertEqual(cell.priceTextField.text, "0.0")
     }
+    
     
     // MARK: - Helpers
     func makeSut(items: [Item]) -> DiscountsViewController {
