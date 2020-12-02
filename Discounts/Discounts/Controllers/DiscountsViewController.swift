@@ -46,6 +46,9 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         // set array of item by default to 1
         if items.count == 0 {
             items.append(Item())
+            items.append(Item())
+            items.append(Item())
+            items.append(Item())
         }
     }
     fileprivate func dismissingKeyboard() {
@@ -54,7 +57,12 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         view.addGestureRecognizer(tap)
     }
     @objc func dismissKeyboard() {
+        // fire the dismiss
         view.endEditing(true)
+        // MARK: -
+        // TODO: calculate price and reduction
+        // TODO: reload tableview ( data )
+        // MARK: -
     }
     
     // MARK: - UITableViewDataSource & Delegate
@@ -67,10 +75,34 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         cell.priceTextField.text = String(items[indexPath.row].price)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if items.count != 1 {
+            return true
+        }
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // deleting
+        if items.count != 1 {
+            if editingStyle == .delete {
+                // delete the item from the items array
+                items.remove(at: indexPath.row)
+                // update the tableview
+                // tableView.reloadData() // not the best way
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+        
+    }
+    
     // footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        // setup a custom view for the footer
         let footerCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierFooter) as? DiscountsFooterCell
-        return footerCell
+        // return content View prevents footer from delete
+        return footerCell?.contentView
     }
 
 
