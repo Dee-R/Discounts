@@ -14,6 +14,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     var items = [Item]()
     var vc: DiscountsViewController!
     private let reuseIdentifierCell = "cell"
+    private let reuseIdentifierFooter = "DiscountFooter"
     
     static func initItemsVC(items: [Item]) -> DiscountsViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -45,12 +46,14 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         print(cell.priceTextField.text)
         return cell
     }
+    // footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
+        let footerCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierFooter) as? DiscountsFooterCell
+        return footerCell
     }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 60
-    }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 60
+//    }
 
     // MARK: - Helper
     private func dequeueCell(in tableView: UITableView) -> UITableViewCell {
