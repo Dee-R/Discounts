@@ -188,6 +188,9 @@
                     <navigationItem key="navigationItem" id="h8g-Zg-SsJ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Y1h-Ql-Xg5">
                             <color key="tintColor" red="0.97758299110000002" green="0.67782145739999999" blue="0.69496011729999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="actionAddItem:" destination="BYZ-38-t0r" id="vyk-PJ-7Qs"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

@@ -70,6 +70,8 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     // MARK: - UITableViewDataSource & Delegate
+    
+    // feed
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -80,13 +82,13 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
+    // edit
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if items.count != 1 {
             return true
         }
         return false
     }
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // deleting
         if items.count != 1 {
@@ -136,6 +138,12 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    @IBAction func actionAddItem(_ sender: Any) {
+        items.append(Item())
+        self.tableView.performBatchUpdates({
+            self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
+        }, completion: nil)
+    }
     
     // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬ test
     
