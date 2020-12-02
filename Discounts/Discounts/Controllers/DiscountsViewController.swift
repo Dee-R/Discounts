@@ -24,24 +24,19 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     // MARK: - cycle life
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Discounts"
         
-        tableView.dragInteractionEnabled = true
-        tableView.dragDelegate = self
-        tableView.dropDelegate = self
-        
-        
+        setupMovingCell()
         setupItemsArr()
         hideNavigationBar()
         dismissingKeyboard()
-        
-        
     }
     
-    
-    // MARK: - <#explication#>
+    // MARK: -  setup
     fileprivate func hideNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -67,6 +62,11 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         // TODO: calculate price and reduction
         // TODO: reload tableview ( data )
         // MARK: -
+    }
+    fileprivate func setupMovingCell() {
+        tableView.dragInteractionEnabled = true
+        tableView.dragDelegate = self
+        tableView.dropDelegate = self
     }
     
     // MARK: - UITableViewDataSource & Delegate
@@ -111,7 +111,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         return footerCell?.contentView
     }
     
-    // moving cells
+    // move cell
      func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -124,7 +124,17 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         //        remove
         items.remove(at: sourceIndexPath.row)
     }
+    
+    // Add cell
+    @IBAction func actionAddItem(_ sender: Any) {
+        items.append(Item())
+        self.tableView.performBatchUpdates({
+            self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
+        }, completion: nil)
+    }
 
+    
+    
 
     // MARK: - Helper
     //MARK: -
@@ -138,11 +148,15 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    @IBAction func actionAddItem(_ sender: Any) {
-        items.append(Item())
-        self.tableView.performBatchUpdates({
-            self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
-        }, completion: nil)
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print("scrolling")
+        // qui.quoi
+        view.endEditing(true)
+        
+        // ou? ProductDetails
+        // comment?
+        
+        
     }
     
     // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬ test
