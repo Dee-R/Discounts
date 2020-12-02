@@ -24,16 +24,20 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     // MARK: - cycle life
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Discounts"
         
+        tableView.dragInteractionEnabled = true
+        tableView.dragDelegate = self
+        tableView.dropDelegate = self
+        
+        
         setupItemsArr()
         hideNavigationBar()
         dismissingKeyboard()
+        
+        
     }
     
     
@@ -104,6 +108,20 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         // return content View prevents footer from delete
         return footerCell?.contentView
     }
+    
+    // moving cells
+     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // drag and drop
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let itemToMove = items[sourceIndexPath.row]
+        //move the item to the destination
+        items.insert(itemToMove, at: destinationIndexPath.row)
+        //        remove
+        items.remove(at: sourceIndexPath.row)
+    }
 
 
     // MARK: - Helper
@@ -118,5 +136,32 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    
+    // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬ test
+    
+    
+
+    
+}
+
+
+extension DiscountsViewController: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return [UIDragItem(itemProvider: NSItemProvider())]
+    }
+}
+
+extension DiscountsViewController: UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        
+        if session.localDragSession != nil { // Drag originated from the same app.
+            return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        }
+        
+        return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+    }
 }
 
