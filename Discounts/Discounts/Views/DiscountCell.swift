@@ -24,10 +24,5 @@ class DiscountCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
-    
-    
-    
-    
-   
 
 }

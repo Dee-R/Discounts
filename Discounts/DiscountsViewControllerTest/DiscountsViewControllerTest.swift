@@ -42,10 +42,23 @@ class DiscountsViewControllerTest: XCTestCase {
 //        XCTAssertEqual(cell?.textLabel?.text, "0.0")
 //    }
 
-    func test_footer_setValueOfPriceAndTaxBy_zero() {
+    
+    
+    
+    // MARK: - Footer
+    func test_footer_setValueOfPriceAndTaxBy_nothing() {
         let sut = makeSut(items: [])
         let cell = sut.tableView.cell(at: 0) as! DiscountCell
-        XCTAssertEqual(cell.priceTextField.text, "0.0")
+        XCTAssertEqual(cell.priceTextField.text, "")
+    }
+    
+    // ?
+    // quoi qui ou quand comment
+    func test_footer_setValueDiscountAndPriceTo_zero() {
+        let sut = makeSut(items: [])        
+        let f = sut.tableView.dequeueReusableCell(withIdentifier: "DiscountFooter") as! DiscountsFooterCell
+        XCTAssertEqual(f.totalToPay.text, "0.00 €")
+        XCTAssertEqual(f.totalDiscounts.text, "0.00 €")
     }
     
     

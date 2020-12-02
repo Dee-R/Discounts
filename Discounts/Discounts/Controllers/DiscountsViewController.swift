@@ -23,9 +23,8 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         return vc
     }
     
+    
     // MARK: - cycle life
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Discounts"
@@ -34,6 +33,9 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         setupItemsArr()
         hideNavigationBar()
         dismissingKeyboard()
+        
+        
+        tableView.reloadData()
     }
     
     // MARK: -  setup
@@ -71,18 +73,18 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: - UITableViewDataSource & Delegate
     
-    // feed
+    // Feed
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
 //        cell.textLabel?.text = String(items[indexPath.row].price)
-        cell.priceTextField.text = String(items[indexPath.row].price)
+        cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(items[indexPath.row].price)
         return cell
     }
     
-    // edit
+    // Edit
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if items.count != 1 {
             return true
@@ -103,7 +105,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    // footer
+    // Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         // setup a custom view for the footer
         let footerCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierFooter) as? DiscountsFooterCell
@@ -111,12 +113,12 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         return footerCell?.contentView
     }
     
-    // move cell
+    // Move cell
      func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    // drag and drop
+    // Drag and drop
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let itemToMove = items[sourceIndexPath.row]
         //move the item to the destination
@@ -132,7 +134,11 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
             self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
         }, completion: nil)
     }
-
+    
+    // Scrolling dismiss
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
+    }
     
     
 
@@ -148,16 +154,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print("scrolling")
-        // qui.quoi
-        view.endEditing(true)
-        
-        // ou? ProductDetails
-        // comment?
-        
-        
-    }
+    
     
     // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬ test
     
@@ -182,7 +179,6 @@ extension DiscountsViewController: UITableViewDropDelegate {
         
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
     }
-    
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
     }
 }
