@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import EngineDiscounts
 
 class DiscountsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
@@ -129,10 +128,13 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     
     // Add cell
     @IBAction func actionAddItem(_ sender: Any) {
+        // add
         items.append(Item())
         self.tableView.performBatchUpdates({
             self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
         }, completion: nil)
+        // dissmiss
+        dismissKeyboard()
     }
     
     // Scrolling dismiss
