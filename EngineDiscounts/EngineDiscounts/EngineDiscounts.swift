@@ -12,10 +12,11 @@ public protocol EngineDiscountDelegate {
 }
 
 public class EngineDiscounts {
-    var items: [Item]
-    var delegate: EngineDiscountDelegate
+    var items: [EngineDiscountsItem] = []
+    var delegate: EngineDiscountDelegate! = nil
     
-    init(delegate: EngineDiscountDelegate, items: [Item]) {
+    
+    public init(delegate: EngineDiscountDelegate, items: [EngineDiscountsItem]) {
         self.items = items
         self.delegate = delegate
     }
@@ -30,5 +31,9 @@ public class EngineDiscounts {
             }
             delegate.showResultWith(sum: localPrices, sumTax: localDiscount)
         }
+    }
+    public func calculateTotal(array:[EngineDiscountsItem]) {
+        self.items = array
+        calculateTotal()
     }
 }

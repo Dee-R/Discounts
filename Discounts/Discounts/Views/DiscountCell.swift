@@ -10,10 +10,10 @@ import UIKit
 class DiscountCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var taxButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
         // Initialization code
         bgView.layer.cornerRadius = 18
         self.priceTextField.delegate = self

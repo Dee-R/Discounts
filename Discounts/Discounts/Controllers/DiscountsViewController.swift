@@ -6,22 +6,42 @@
 //
 
 import UIKit
+import EngineDiscounts
 
 class DiscountsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var items = [Item]()
+//    var items = [EngineDiscountsItem]()
+    
+    var items : [EngineDiscountsItem] = [] {
+        didSet {
+            print("██░░░ L\(#line) 🚧📕 didset Array of Item 🚧🚧 [ \(type(of: self))  \(#function) ]")
+            engineDiscount?.calculateTotal(array: items)
+        }
+    }
     var vc: DiscountsViewController!
     private let reuseIdentifierCell = "cell"
     private let reuseIdentifierFooter = "DiscountFooter"
     
-    static func initItemsVC(items: [Item]) -> DiscountsViewController {
+    var engineDiscount: EngineDiscounts?
+    var totalPrice: Float = 0
+    var totalTaxPrice: Float = 0
+    
+    static func initItemsVC(items: [EngineDiscountsItem]) -> DiscountsViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "DiscountsViewController") as! DiscountsViewController
         vc.items = items
         return vc
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder) // executed thx to ib
+        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
+        items.append(EngineDiscountsItem(price: 10, tax: 50))
+        items.append(EngineDiscountsItem(price: 20, tax: 50))
+        engineDiscount = EngineDiscounts(delegate: self, items: items)
+        engineDiscount?.calculateTotal()
+    }
     
     // MARK: - cycle life
     override func viewDidLoad() {
@@ -29,12 +49,13 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         self.title = "Discounts"
         
         setupMovingCell()
-        setupItemsArr()
+//        setupItemsArr()
         hideNavigationBar()
         dismissingKeyboard()
         
+//        EngineDiscounts(delegate: self, items: ))
         
-        tableView.reloadData()
+        
     }
     
     // MARK: -  setup
@@ -45,10 +66,10 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     fileprivate func setupItemsArr() {
         // set array of item by default to 1
         if items.count == 0 {
-            items.append(Item())
-            items.append(Item())
-            items.append(Item())
-            items.append(Item())
+            items.append(EngineDiscountsItem())
+            items.append(EngineDiscountsItem())
+            items.append(EngineDiscountsItem())
+            items.append(EngineDiscountsItem())
         }
     }
     fileprivate func dismissingKeyboard() {
@@ -80,6 +101,8 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
 //        cell.textLabel?.text = String(items[indexPath.row].price)
         cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(items[indexPath.row].price)
+        cell.taxButton.setTitle(items[indexPath.row].tax == 0.0 ? "0%" : String(items[indexPath.row].tax), for: .normal)
+        
         return cell
     }
     
@@ -95,10 +118,16 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         if items.count != 1 {
             if editingStyle == .delete {
                 // delete the item from the items array
-                items.remove(at: indexPath.row)
-                // update the tableview
-                // tableView.reloadData() // not the best way
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+                self.tableView.performBatchUpdates({
+                    items.remove(at: indexPath.row)
+                    // update the tableview
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    
+                }) { (true) in
+                    self.tableView.reloadData() // reload data
+                }
+                // tableView.reloadData() // not the best way to call it direclty
             }
         }
         
@@ -108,6 +137,8 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         // setup a custom view for the footer
         let footerCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierFooter) as? DiscountsFooterCell
+        footerCell?.totalToPay.text = String(self.totalPrice)
+        footerCell?.totalDiscounts.text = String(self.totalTaxPrice)
         // return content View prevents footer from delete
         return footerCell?.contentView
     }
@@ -128,11 +159,19 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     
     // Add cell
     @IBAction func actionAddItem(_ sender: Any) {
-        // add
-        items.append(Item())
+        // add default item
+        items.append(EngineDiscountsItem(price: 22, tax: 30))
+        
         self.tableView.performBatchUpdates({
             self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
-        }, completion: nil)
+        }) { (true) in
+            self.tableView.reloadData() // reload data
+        }
+        
+        
+        
+        
+        
         // dissmiss
         dismissKeyboard()
     }
@@ -141,27 +180,6 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         view.endEditing(true)
     }
-    
-    
-
-    // MARK: - Helper
-    //MARK: -
-    // FIXME: to delete
-    // MARK: -
-    private func dequeueCell(in tableView: UITableView) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierCell) {
-            return cell
-        }
-        return UITableViewCell(style: .default, reuseIdentifier: reuseIdentifierCell)
-        
-    }
-    
-    
-    
-    // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬ test
-    
-    
-
     
 }
 
@@ -185,3 +203,11 @@ extension DiscountsViewController: UITableViewDropDelegate {
     }
 }
 
+extension DiscountsViewController: EngineDiscountDelegate {
+    func showResultWith(sum: Float, sumTax: Float) {
+        totalPrice = sum
+        totalTaxPrice = sumTax
+        print("██░░░ L\(#line) 🚧📕 sum \(sum), sumTax : \(sumTax) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+
+    }
+}

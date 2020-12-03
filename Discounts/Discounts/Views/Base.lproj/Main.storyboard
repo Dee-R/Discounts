@@ -75,6 +75,7 @@
                                         <connections>
                                             <outlet property="bgView" destination="gFq-yi-azT" id="zYd-CA-ZFY"/>
                                             <outlet property="priceTextField" destination="jxG-xo-M1G" id="vD8-B7-jNf"/>
+                                            <outlet property="taxButton" destination="JQk-wp-IaC" id="LKi-7O-uLV"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="DiscountFooter" rowHeight="120" id="neh-qi-BIQ" userLabel="DiscountFooterCell" customClass="DiscountsFooterCell" customModule="Discounts" customModuleProvider="target">

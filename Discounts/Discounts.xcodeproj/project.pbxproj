@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		938FE4F52574017D00D3B065 /* Discounts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 938FE4F32574017D00D3B065 /* Discounts.xcdatamodeld */; };
 		938FE4F72574017F00D3B065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938FE4F62574017F00D3B065 /* Assets.xcassets */; };
 		938FE4FA2574017F00D3B065 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938FE4F82574017F00D3B065 /* LaunchScreen.storyboard */; };
+		93DC32CE2579701700199396 /* EngineDiscounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DC32CD2579701700199396 /* EngineDiscounts.framework */; };
+		93DC32CF2579701700199396 /* EngineDiscounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DC32CD2579701700199396 /* EngineDiscounts.framework */; platformFilter = ios; };
+		93DC32D02579702500199396 /* EngineDiscounts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 93DC32CD2579701700199396 /* EngineDiscounts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93DC5540257522EA00079F3B /* DiscountsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */; };
 		93DC554D257526D800079F3B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC554C257526D800079F3B /* Item.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +35,19 @@
 			remoteInfo = Discounts;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		93DC32C6257959DB00199396 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				93DC32D02579702500199396 /* EngineDiscounts.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		930CCA20257676F50078EC54 /* DiscountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCell.swift; sourceTree = "<group>"; };
@@ -48,6 +64,7 @@
 		938FE4F62574017F00D3B065 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		938FE4F92574017F00D3B065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		938FE4FB2574017F00D3B065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93DC32CD2579701700199396 /* EngineDiscounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EngineDiscounts.framework; sourceTree = "<group>"; };
 		93DC553D257522EA00079F3B /* DiscountsViewControllerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiscountsViewControllerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsViewControllerTest.swift; sourceTree = "<group>"; };
 		93DC5541257522EA00079F3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93DC32CE2579701700199396 /* EngineDiscounts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93DC32CF2579701700199396 /* EngineDiscounts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +125,7 @@
 		934240DE257822DD00DCF439 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93DC32CD2579701700199396 /* EngineDiscounts.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -186,6 +206,7 @@
 				938FE4E32574017D00D3B065 /* Sources */,
 				938FE4E42574017D00D3B065 /* Frameworks */,
 				938FE4E52574017D00D3B065 /* Resources */,
+				93DC32C6257959DB00199396 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -449,6 +470,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Discounts",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Discounts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -467,6 +493,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Discounts",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Discounts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -484,6 +515,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DiscountsViewControllerTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -503,6 +538,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DiscountsViewControllerTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,0 +1,4 @@
+framework module EngineDiscounts {
+  header "EngineDiscounts-Swift.h"
+  requires objc
+}
