@@ -7,11 +7,11 @@
 import Foundation
 
 // can have many implementation (iOS, iPad, iWatch, TVos )
-protocol EngineDiscountDelegate {
+public protocol EngineDiscountDelegate {
     func showResultWith(sum: Float, sumTax:Float)
 }
 
-class EngineDiscounts {
+public class EngineDiscounts {
     var items: [Item]
     var delegate: EngineDiscountDelegate
     
@@ -19,7 +19,7 @@ class EngineDiscounts {
         self.items = items
         self.delegate = delegate
     }
-    func calculateTotal() {
+    public func calculateTotal() {
         if !items.isEmpty {
             var localPrices : Float = 0
             var localDiscount: Float = 0
