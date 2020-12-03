@@ -36,7 +36,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     
     required init?(coder: NSCoder) {
         super.init(coder: coder) // executed thx to ib
-        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
+        
         items.append(EngineDiscountsItem(price: 10, tax: 50))
         items.append(EngineDiscountsItem(price: 20, tax: 50))
         engineDiscount = EngineDiscounts(delegate: self, items: items)
@@ -101,9 +101,40 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
         cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(items[indexPath.row].price)
         cell.taxButton.setTitle(items[indexPath.row].tax == 0.0 ? "0%" : String(items[indexPath.row].tax), for: .normal)
-        
+//        print("██░░░ L\(#line) 🚧🚧 tag : \(cell.tag) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+        cell.priceTextField.delegate = self
+        cell.contentView.tag = indexPath.row
         return cell
     }
+    
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        print("██░░░ L\(#line) 🚧🚧 ID : \(textField.superview?.tag) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+//        print("-------", textField.text)
+        return true
+    }
+    
+    // cell text field
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        // assign a tag for each cell
+        // get tag of right cell and update it
+        
+        if let tag = textField.superview?.tag {
+            guard let newpriceFromText = textField.text else { return }
+            guard let newpriceFromFloat =  Float(newpriceFromText) else { return }
+            items[tag].price = newpriceFromFloat
+            
+            tableView.reloadData()
+        }
+        if textField.text?.count == 0 {
+            print("██░░░ L\(#line) 🚧🚧 empty : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+        } else {
+            print("██░░░ L\(#line) 🚧🚧 continue : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+        }
+        
+    }
+    
+    
     
     // Edit
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -159,7 +190,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     // Add cell
     @IBAction func actionAddItem(_ sender: Any) {
         // add default item
-        items.append(EngineDiscountsItem(price: 22, tax: 30))
+        items.append(EngineDiscountsItem(price: 10, tax: 50))
         
         self.tableView.performBatchUpdates({
             self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
@@ -201,7 +232,7 @@ extension DiscountsViewController: EngineDiscountDelegate {
     func showResultWith(sum: Float, sumTax: Float) {
         totalPrice = sum
         totalTaxPrice = sumTax
-        print("██░░░ L\(#line) 🚧📕 sum \(sum), sumTax : \(sumTax) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+//        print("██░░░ L\(#line) 🚧📕 sum \(sum), sumTax : \(sumTax) 🚧🚧 [ \(type(of: self))  \(#function) ]")
 
     }
 }

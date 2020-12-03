@@ -22,12 +22,11 @@ class DiscountCell: UITableViewCell, UITextFieldDelegate {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected
+//        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         let decimalSeparator = Locale.current.decimalSeparator ?? "."
-        
         // controle input user while writting
         let inverseSet = NSCharacterSet(charactersIn:"0123456789").inverted
         let components = string.components(separatedBy: inverseSet)
@@ -53,6 +52,20 @@ class DiscountCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
+    // click sur la bonne cellule
+    // edit text field
+    // dissmiss la cellule
+    // changement sont appliqué
+        // set tableau item avec nouvelle element
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print(textField.tag)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+   
+//        print("██░░░ L\(#line) 🚧🚧 cell : \(self.tag) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+    }
     
 
 }
