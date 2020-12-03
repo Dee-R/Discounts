@@ -99,7 +99,6 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
-//        cell.textLabel?.text = String(items[indexPath.row].price)
         cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(items[indexPath.row].price)
         cell.taxButton.setTitle(items[indexPath.row].tax == 0.0 ? "0%" : String(items[indexPath.row].tax), for: .normal)
         
@@ -167,11 +166,6 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         }) { (true) in
             self.tableView.reloadData() // reload data
         }
-        
-        
-        
-        
-        
         // dissmiss
         dismissKeyboard()
     }
