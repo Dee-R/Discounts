@@ -8,7 +8,7 @@
 import UIKit
 import EngineDiscounts
 
-class DiscountsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class DiscountsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
 //    var items = [EngineDiscountsItem]()
@@ -51,7 +51,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         setupMovingCell()
 //        setupItemsArr()
         hideNavigationBar()
-        dismissingKeyboard()
+//        dismissingKeyboard()
         
 //        EngineDiscounts(delegate: self, items: ))
         
@@ -106,35 +106,6 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         cell.contentView.tag = indexPath.row
         return cell
     }
-    
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        print("██░░░ L\(#line) 🚧🚧 ID : \(textField.superview?.tag) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-//        print("-------", textField.text)
-        return true
-    }
-    
-    // cell text field
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        // assign a tag for each cell
-        // get tag of right cell and update it
-        
-        if let tag = textField.superview?.tag {
-            guard let newpriceFromText = textField.text else { return }
-            guard let newpriceFromFloat =  Float(newpriceFromText) else { return }
-            items[tag].price = newpriceFromFloat
-            
-            tableView.reloadData()
-        }
-        if textField.text?.count == 0 {
-            print("██░░░ L\(#line) 🚧🚧 empty : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-        } else {
-            print("██░░░ L\(#line) 🚧🚧 continue : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-        }
-        
-    }
-    
-    
     
     // Edit
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -208,13 +179,12 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     
 }
 
-
+// MARK: - Drag And Drop
 extension DiscountsViewController: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         return [UIDragItem(itemProvider: NSItemProvider())]
     }
 }
-
 extension DiscountsViewController: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
         
@@ -228,11 +198,45 @@ extension DiscountsViewController: UITableViewDropDelegate {
     }
 }
 
+// MARK: - Engine
 extension DiscountsViewController: EngineDiscountDelegate {
     func showResultWith(sum: Float, sumTax: Float) {
         totalPrice = sum
         totalTaxPrice = sumTax
 //        print("██░░░ L\(#line) 🚧📕 sum \(sum), sumTax : \(sumTax) 🚧🚧 [ \(type(of: self))  \(#function) ]")
 
+    }
+}
+
+
+extension DiscountsViewController: UITextFieldDelegate {
+    // MARK: - cell text field delegate
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("██░░░ L\(#line) 🚧🚧 ID : \(textField.superview?.tag) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+        //        textField.resignFirstResponder()
+        //        print("-------", textField.text)
+        return true
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text! + string
+        print(currentText)
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        // assign a tag for each cell
+        // get tag of right cell and update it
+        
+        if let tag = textField.superview?.tag {
+            guard let newpriceFromText = textField.text else { return }
+            guard let newpriceFromFloat =  Float(newpriceFromText) else { return }
+            items[tag].price = newpriceFromFloat
+            
+            tableView.reloadData()
+        }
+        if textField.text?.count == 0 {
+            print("██░░░ L\(#line) 🚧🚧 empty : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+        } else {
+            print("██░░░ L\(#line) 🚧🚧 continue : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+        }
     }
 }
