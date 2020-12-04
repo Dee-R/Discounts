@@ -51,7 +51,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         setupMovingCell()
 //        setupItemsArr()
         hideNavigationBar()
-//        dismissingKeyboard()
+        dismissingKeyboard()
         
 //        EngineDiscounts(delegate: self, items: ))
         
@@ -76,6 +76,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         // when tap on the view => dismiss keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        tableView.reloadData()
     }
     @objc func dismissKeyboard() {
         // fire the dismiss
@@ -209,34 +210,102 @@ extension DiscountsViewController: EngineDiscountDelegate {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 extension DiscountsViewController: UITextFieldDelegate {
     // MARK: - cell text field delegate
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("██░░░ L\(#line) 🚧🚧 ID : \(textField.superview?.tag) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-        //        textField.resignFirstResponder()
-        //        print("-------", textField.text)
-        return true
-    }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text! + string
-        print(currentText)
-        return true
-    }
+    // BEGIN
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        print("BEGIN ------")
+//        print("                  ", textField.text)
+//        return true
+//    }
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        // assign a tag for each cell
-        // get tag of right cell and update it
+        print("END ------")
+        // recupere le chiffre dans le textfield
+        print("                  ", textField.text)
+        if let tag = textField.superview?.tag {
+            if let text = textField.text {
+                print(text.count)
+                
+                if text == "" {
+                    items[tag].price = 0
+                    tableView.reloadData()
+                } else {
+                    if let textFloat = Float(text) {
+                        items[tag].price = textFloat
+                        tableView.reloadData()
+                    }
+                    
+                }
+            }
+            
+        }
+        tableView.reloadData()
+    }
+    
+    
+    
+    // DURING
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if textField.text?.count == 0 {
+//            print("textField == 0")
+//        }
         
         if let tag = textField.superview?.tag {
-            guard let newpriceFromText = textField.text else { return }
-            guard let newpriceFromFloat =  Float(newpriceFromText) else { return }
-            items[tag].price = newpriceFromFloat
+            if let text = textField.text {
+                print(text.count)
+                if let textFloat = Float(text) {
+                    // x number
+                    print("A : \(textFloat)")
+                    items[tag].price = textFloat
+//                    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+//                        DispatchQueue.main.async {
+//                            self?.tableView.reloadData()
+//                        }
+//                    }
+//                    tableView.reloadData()
+                } else {
+                    print("B")
+                    // zero
+                    items[tag].price = 0
+                    
+                }
+            }
             
-            tableView.reloadData()
         }
-        if textField.text?.count == 0 {
-            print("██░░░ L\(#line) 🚧🚧 empty : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-        } else {
-            print("██░░░ L\(#line) 🚧🚧 continue : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-        }
+//        guard let text = textField.text else { return false }
+//        guard let textFloat = Float(text) else { return false }
+//
+//        print("WHIL| tag : \(tag), text : \(text), textFloat: \(textFloat)")
+        
+        return true
     }
+    
+    // END
+//    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+//
+//        // assign a tag for each cell
+//        // get tag of right cell and update it
+//        if let tag = textField.superview?.tag {
+//            guard let newpriceFromText = textField.text else { return }
+//            guard let newpriceFromFloat =  Float(newpriceFromText) else { return }
+//            items[tag].price = newpriceFromFloat
+//
+//            tableView.reloadData()
+//        }
+//        if textField.text?.count == 0 {
+//            print("██░░░ L\(#line) 🚧🚧 empty : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+//        } else {
+//            print("██░░░ L\(#line) 🚧🚧 continue : \(textField.text?.count) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+//        }
+//    }
 }
