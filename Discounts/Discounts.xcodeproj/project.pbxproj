@@ -24,6 +24,8 @@
 		93DC32D02579702500199396 /* EngineDiscounts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 93DC32CD2579701700199396 /* EngineDiscounts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93DC5540257522EA00079F3B /* DiscountsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */; };
 		93DC554D257526D800079F3B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC554C257526D800079F3B /* Item.swift */; };
+		93FA2DB62589365E00F3C402 /* DiscountCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA2DB52589365E00F3C402 /* DiscountCollectionViewController.swift */; };
+		93FA2DB92589640100F3C402 /* DiscountsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA2DB82589640100F3C402 /* DiscountsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		93DC553F257522EA00079F3B /* DiscountsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsViewControllerTest.swift; sourceTree = "<group>"; };
 		93DC5541257522EA00079F3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93DC554C257526D800079F3B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		93FA2DB52589365E00F3C402 /* DiscountCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCollectionViewController.swift; sourceTree = "<group>"; };
+		93FA2DB82589640100F3C402 /* DiscountsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,11 +98,10 @@
 		931DF4662575656E0047913B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				938FE4F82574017F00D3B065 /* LaunchScreen.storyboard */,
-				938FE4F02574017D00D3B065 /* Main.storyboard */,
 				9372A7C5257577560051C09B /* RowView.swift */,
 				930CCA20257676F50078EC54 /* DiscountCell.swift */,
 				931DF47325756B180047913B /* TaxButton.swift */,
+				93FA2DB82589640100F3C402 /* DiscountsCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 		938FE4E92574017D00D3B065 /* Discounts */ = {
 			isa = PBXGroup;
 			children = (
+				93FA2DB32589355400F3C402 /* SB */,
 				93DC554B257526CE00079F3B /* Models */,
 				931DF4662575656E0047913B /* Views */,
 				93DC5552257526E500079F3B /* Controllers */,
@@ -192,8 +196,18 @@
 			children = (
 				938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */,
 				934240C52577F5DC00DCF439 /* DiscountsFooterCell.swift */,
+				93FA2DB52589365E00F3C402 /* DiscountCollectionViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		93FA2DB32589355400F3C402 /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				938FE4F82574017F00D3B065 /* LaunchScreen.storyboard */,
+				938FE4F02574017D00D3B065 /* Main.storyboard */,
+			);
+			name = SB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +312,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				93DC554D257526D800079F3B /* Item.swift in Sources */,
+				93FA2DB92589640100F3C402 /* DiscountsCollectionViewCell.swift in Sources */,
+				93FA2DB62589365E00F3C402 /* DiscountCollectionViewController.swift in Sources */,
 				930CCA21257676F50078EC54 /* DiscountCell.swift in Sources */,
 				938FE4EF2574017D00D3B065 /* DiscountsViewController.swift in Sources */,
 				934240C62577F5DC00DCF439 /* DiscountsFooterCell.swift in Sources */,
