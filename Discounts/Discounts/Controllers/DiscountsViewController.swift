@@ -71,7 +71,7 @@ class DiscountsViewController: UIViewController {
     fileprivate func populateArrayOfItem() {
         // set array of item by default to 1
         if items.count == 0 {
-            items.append(EngineDiscountsItem(price: 0, tax: 0))
+            items.append(EngineDiscountsItem(price: 10, tax: 1))
         }
     }
     fileprivate func setupDismissKeyboardButton() {
@@ -105,8 +105,13 @@ class DiscountsViewController: UIViewController {
                 guard let this = self else { return }
                 this.engineDiscount?.calculateTotal(array: this.items)
                 // footer cell configuration
-                this.footerCell?.totalDiscounts.text = this.totalTaxPrice == 0.00 ?  "\(this.totalTaxPrice) €" :  "-\(this.totalTaxPrice) €"
-                this.footerCell?.totalToPay.text = "\(this.totalPrice) €"
+                NSString(format: "%.2f", this.totalPrice) as String + "€"
+//                this.footerCell?.totalDiscounts.text = this.totalTaxPrice == 0.00 ?  "\(this.totalTaxPrice) €" :  "-\(this.totalTaxPrice) €"
+//                this.footerCell?.totalToPay.text = "\(this.totalPrice) €"
+                
+                let totalDiscountPriceFormatedString = NSString(format: "%.2f", this.totalTaxPrice) as String
+                this.footerCell?.totalDiscounts.text = this.totalTaxPrice == 0.00 ?  "\(totalDiscountPriceFormatedString) €" :  "-\(totalDiscountPriceFormatedString) €"
+                this.footerCell?.totalToPay.text = NSString(format: "%.2f", this.totalPrice) as String + " €"
             }
             .store(in: &setOfCancellable)
     } // Combine
@@ -248,8 +253,17 @@ extension DiscountsViewController: UITableViewDragDelegate, UITableViewDropDeleg
 // MARK: - Engine Discount Delegate
 extension DiscountsViewController: EngineDiscountDelegate {
     func showResultWith(sum: Float, sumTax: Float) {
-        totalPrice = sum
-        totalTaxPrice = sumTax
+        print("██░░░ L\(#line) 🚧🚧 sum : \(sum) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+        print("██░░░ L\(#line) 🚧🚧 sumTax: \(sumTax) 🚧🚧 [ \(type(of: self))  \(#function) ]")
+//        totalPrice = sum
+//        totalTaxPrice = sumTax
+//        totalPrice = (sum*100).rounded()/100
+//        totalTaxPrice = (sumTax*100).rounded()/100
+        
+                totalPrice = sum
+                totalTaxPrice = sumTax
+        
+        
     } // get Discount & Total To pay
 }
 
