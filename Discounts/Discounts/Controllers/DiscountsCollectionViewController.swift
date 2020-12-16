@@ -10,6 +10,9 @@ import UIKit
 private let reuseIdentifier = "Cell1"
 
 class DiscountsCollectionViewController: UICollectionViewController , UICollectionViewDelegateFlowLayout{
+    var tagIdButton: Int?
+    var discountDidSelected: ( (_ discount : String, _ id : Int) -> Void )?
+    
     private let itemsPerRow: CGFloat = 5
     private let sectionInsets = UIEdgeInsets(top: 50.0,
                                              left: 10.0,

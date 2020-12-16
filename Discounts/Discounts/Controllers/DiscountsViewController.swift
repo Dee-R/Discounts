@@ -12,8 +12,8 @@ class DiscountsViewController: UIViewController {
     // MARK: - 🉑 Setting PROPERTIES
     // Combine
     private let notificationCenter = NotificationCenter.default
-    private var subscriberCancellable = Set<AnyCancellable>() // list of subscriber cancel
-    private var setOfCancellable = Set<AnyCancellable>() // list of subscriber cancel
+    private var subscriberCancellable = Set<AnyCancellable>() // list of subscriber cancel (row)
+    private var setOfCancellable = Set<AnyCancellable>() // list of subscriber cancel (data)
     @Published var items : [EngineDiscountsItem] = [] // Model
     
     // UITableViewDelegate
@@ -96,35 +96,6 @@ class DiscountsViewController: UIViewController {
         tableView.dropDelegate = self
     }
     func binding() {
-//        $items.receive(on: DispatchQueue.main)
-//            .map {[weak self] (myItem) -> String in
-//                guard self != nil else { return ""}
-//
-//
-//                var localPrice: Float = 0
-//                myItem.forEach { (item) in
-//                    localPrice += item.price
-//                }
-//                return "\(localPrice) €"
-//            }
-//            .assign(to: \.title, on: self)
-//            .store(in: &setOfCancellable)
-        
-        // MARK: - p: items s:Footer
-//        $items
-//            .receive(on: DispatchQueue.main)
-//            .sink { (fail) in
-//                print(fail)
-//            } receiveValue: { (arrItem) in
-//                print("///////",arrItem)
-//                // recois le tableau
-//                var price: Float = 0
-//                _ = arrItem.map { (engineDiscountsItem)  in
-//                    price += engineDiscountsItem.price
-//                }
-//                self.footerCell?.totalToPay.text = String(price)
-//            }
-//            .store(in: &setOfCancellable)
         
         // MARK: - p: items s:Footer
         $items
@@ -134,25 +105,11 @@ class DiscountsViewController: UIViewController {
             } receiveValue: { [weak self] (arrItem) in
                 guard let this = self else { return }
                 this.engineDiscount?.calculateTotal(array: this.items)
-                
-                print(this.totalPrice)
-                print(this.totalTaxPrice)
-                
                 // footer cell configuration
                 this.footerCell?.totalDiscounts.text = this.totalTaxPrice == 0.00 ?  "\(this.totalTaxPrice) €" :  "-\(this.totalTaxPrice) €"
                 this.footerCell?.totalToPay.text = "\(this.totalPrice) €"
-                
-                
-                // recois le tableau
-//                var price: Float = 0
-//                _ = arrItem.map { (engineDiscountsItem)  in
-//                    price += engineDiscountsItem.price
-//                }
-//                self.footerCell?.totalToPay.text = String(price)
             }
             .store(in: &setOfCancellable)
-        
-        
     } // Combine
     
 
@@ -175,8 +132,25 @@ class DiscountsViewController: UIViewController {
     @IBAction func actionChangeDiscount(_ sender: UIButton) {
         guard let tagButton = sender.superview?.tag else {return} // ✔︎
         self.tagIdButtonCliked = tagButton // ✔︎ id will send
-        print(tagButton)
-        //performSegue(withIdentifier: "SegueToTaxViewController", sender: nil) // got to
+//        print(tagButton)
+        performSegue(withIdentifier: "SegueToTaxViewController", sender: nil) // got to
+    }
+    
+    // MARK: - 🈂️ Override A
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueToDiscountsCollectionViewController" {
+            let discountCollectionVC = segue.destination as! DiscountsCollectionViewController
+            discountCollectionVC.discountDidSelected = discountDidSelectedFromDiscountCollectionVC
+        }
+    }
+    
+    func discountDidSelectedFromDiscountCollectionVC(_ discount : String, _ id : Int) {
+        if let discountValue = Float(discount) {
+            items[id].tax = discountValue
+        }
+        // MARK: -
+        // FIXME: Reload data on the tableview
+        // MARK: -
     }
 }
 

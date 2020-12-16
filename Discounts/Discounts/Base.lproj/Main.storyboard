@@ -203,6 +203,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="fgh-C7-NCe" id="eiL-Yf-tgb"/>
+                        <segue destination="TKC-Ih-JcX" kind="presentation" identifier="SegueToDiscountsCollectionViewController" id="D5R-dG-eDn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -214,7 +215,7 @@
             <objects>
                 <collectionViewController id="TKC-Ih-JcX" customClass="DiscountsCollectionViewController" customModule="Discounts" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hVk-T7-hIw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Dzq-Bt-fvi">
