@@ -281,7 +281,7 @@ extension DiscountsViewController: UITextFieldDelegate {
         
         // SETUP
         let c = NSLocale.current.decimalSeparator ?? "."
-        let limitBeforeSeparator = 2
+        let limitBeforeSeparator = 6
         let limitAfterSeparator = 2
         
         // Validator
