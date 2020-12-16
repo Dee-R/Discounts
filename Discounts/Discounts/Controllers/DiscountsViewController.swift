@@ -167,8 +167,11 @@ extension DiscountsViewController: UITableViewDataSource, UITableViewDelegate {
     } // Feed
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
+        //feed Price
         
-        cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(items[indexPath.row].price)
+        cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(format: "%.2f", items[indexPath.row].price)
+        
+        //feed discount
         let discountRouded = roundf(items[indexPath.row].tax).clean
         cell.discountButton.setTitle(items[indexPath.row].tax == 0.0 ? "0 %" : "\(discountRouded) %", for: .normal)
         
@@ -304,6 +307,7 @@ extension DiscountsViewController: UITextFieldDelegate {
                     //  save data in the array of items when backspace is not pressed
                     let priceValueFloat = Float(newText) ?? 0
                     items[tagCell].price = priceValueFloat
+                    print("██░░░ L\(#line) 🚧🚧 privevalue : \(priceValueFloat) 🚧🚧 [ \(type(of: self))  \(#function) ]")
                 }
             }
             return validatorUserInput
@@ -311,4 +315,12 @@ extension DiscountsViewController: UITextFieldDelegate {
             return validatorUserInput
         }
     } // while editing
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let textFloat = textField.text else {return}
+        if let f = Float(textFloat) {
+            let tipText: String = String(format: "%.2f", f) as String
+            textField.text = tipText
+        }
+    }
 }
