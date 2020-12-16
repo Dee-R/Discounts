@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TKC-Ih-JcX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lh8-Qp-NHe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -53,6 +53,9 @@
                                                         <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="actionChangeDiscount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OR7-jZ-Epg"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,8 +79,8 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bgView" destination="gFq-yi-azT" id="zYd-CA-ZFY"/>
+                                            <outlet property="discountButton" destination="JQk-wp-IaC" id="Hkg-Af-XVq"/>
                                             <outlet property="priceTextField" destination="jxG-xo-M1G" id="vD8-B7-jNf"/>
-                                            <outlet property="taxButton" destination="JQk-wp-IaC" id="LKi-7O-uLV"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="DiscountFooter" rowHeight="120" id="neh-qi-BIQ" userLabel="DiscountFooterCell" customClass="DiscountsFooterCell" customModule="Discounts" customModuleProvider="target">
@@ -206,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="747.82608695652175" y="137.94642857142856"/>
         </scene>
-        <!--Discount Collection View Controller-->
+        <!--Discounts Collection View Controller-->
         <scene sceneID="V0v-ip-I3D">
             <objects>
-                <collectionViewController id="TKC-Ih-JcX" customClass="DiscountCollectionViewController" customModule="Discounts" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="TKC-Ih-JcX" customClass="DiscountsCollectionViewController" customModule="Discounts" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hVk-T7-hIw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -236,6 +239,9 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                             </state>
+                                            <connections>
+                                                <action selector="actionButtonTaxTapped:" destination="TKC-Ih-JcX" eventType="touchUpInside" id="0Rk-GT-7Mt"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="0.75378042460000005" blue="0.75069171189999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

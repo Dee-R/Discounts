@@ -26,6 +26,9 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     var isEditingRow = false
     var footerCell: DiscountsFooterCell? = nil
     
+    //Passing Button Cliked to DiscountCollectionViewController
+    var tagIdButton: Int?
+    
     //Others
     var vc: DiscountsViewController!
     var engineDiscount: EngineDiscounts?
@@ -126,6 +129,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
 //            }
 //            .store(in: &setOfCancellable)
         
+        // MARK: - p: items s:Footer
         $items
             .receive(on: DispatchQueue.main)
             .sink { (fail) in
@@ -136,6 +140,8 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 print(this.totalPrice)
                 print(this.totalTaxPrice)
+                
+                // footer cell configuration
                 this.footerCell?.totalDiscounts.text = this.totalTaxPrice == 0.00 ?  "\(this.totalTaxPrice) €" :  "-\(this.totalTaxPrice) €"
                 this.footerCell?.totalToPay.text = "\(this.totalPrice) €"
                 
@@ -152,6 +158,13 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    //Button to change discount
+    @IBAction func actionChangeDiscount(_ sender: UIButton) {
+        guard let tagButton = sender.superview?.tag else {return} // ✔︎ get ID Tag
+        self.tagIdButton = tagButton
+        print(tagButton)
+//        performSegue(withIdentifier: "SegueToTaxViewController", sender: nil)
+    }
 }
 
 // MARK: - UITableViewDataSource & Delegate
@@ -160,50 +173,22 @@ extension DiscountsViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    /*
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
-     cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(items[indexPath.row].price)
-     cell.taxButton.setTitle(items[indexPath.row].tax == 0.0 ? "0%" : String(items[indexPath.row].tax), for: .normal)
-     //        print("██░░░ L\(#line) 🚧🚧 tag : \(cell.tag) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-     cell.priceTextField.delegate = self
-     cell.contentView.tag = indexPath.row
-     return cell
-     }
-     */
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
         
         cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(items[indexPath.row].price)
-        cell.taxButton.setTitle(items[indexPath.row].tax == 0.0 ? "0%" : String(items[indexPath.row].tax), for: .normal)
+        cell.discountButton.setTitle(items[indexPath.row].tax == 0.0 ? "0%" : String(items[indexPath.row].tax), for: .normal)
         
-        // id tag
+        // id tag TextField
         cell.priceTextField.delegate = self
         cell.priceTextField.becomeFirstResponder()
         cell.contentView.tag = indexPath.row
         
-        // ici creation perform
-        // PUBLISHER = SET
-        
-//        // Combine : PRICE publisher
-//        notificationCenter.publisher(for: UITextField.textDidChangeNotification, object: cell.priceTextField)
-//            .sink { [weak self] (notification) in
-//                guard let this = self else {return}
-//                guard let textfield = notification.object as? UITextField,
-//                      let text = textfield.text,
-//                      let value = Float(text) else {return}
-//                // update array
-////                print("██░░░ L\(#line) 🚧🚧 value : \(value) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-////                print("██░░░ L\(#line) 🚧🚧 array of items : \(this.items) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-//            }
-//            .store(in: &subscriberCancellable)
-//        //MARK: -
-//        // FIXME: .store(in: &subscriberCancellable)
-//        // verifier que ça ne pose pas de porbleme pour la suppression d'un er row
-//        // ajouter un selector pour changer de price
-//        // MARK: -
         return cell
     }
+    
+    
     
     // Can Edit
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -236,8 +221,6 @@ extension DiscountsViewController {
         }
         
     }
-    
-    
     
     // Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -299,7 +282,6 @@ extension DiscountsViewController: UITableViewDragDelegate {
     }
 }
 
-
 extension DiscountsViewController: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
         
@@ -313,14 +295,13 @@ extension DiscountsViewController: UITableViewDropDelegate {
     }
 }
 
-// MARK: - Engine
+// MARK: - Engine Delegate
 extension DiscountsViewController: EngineDiscountDelegate {
     func showResultWith(sum: Float, sumTax: Float) {
         totalPrice = sum
         totalTaxPrice = sumTax
     }
 }
-
 
 // MARK: - cell text field delegate
 extension DiscountsViewController: UITextFieldDelegate {
@@ -376,18 +357,3 @@ extension DiscountsViewController: UITextFieldDelegate {
         print(items)
     }
 }
-
-
-//public typealias Binding = Subscriber
-//public extension Publisher where Failure == Never {
-//    func bind<B: Binding>(subscriber: B) -> AnyCancellable
-//    where B.Failure == Never, B.Input == Output {
-//
-//        handleEvents(receiveSubscription: { subscription in
-//            subscriber.receive(subscription: subscription)
-//        })
-//        .sink { value in
-//            _ = subscriber.receive(value)
-//        }
-//    }
-//}
