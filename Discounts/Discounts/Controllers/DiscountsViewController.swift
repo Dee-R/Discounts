@@ -132,21 +132,22 @@ class DiscountsViewController: UIViewController {
     @IBAction func actionChangeDiscount(_ sender: UIButton) {
         guard let tagButton = sender.superview?.tag else {return} // ✔︎
         self.tagIdButtonCliked = tagButton // ✔︎ id will send
-//        print(tagButton)
-        performSegue(withIdentifier: "SegueToTaxViewController", sender: nil) // got to
+        performSegue(withIdentifier: "SegueToDiscountsCollectionViewController", sender: nil) // got to
     }
     
     // MARK: - 🈂️ Override A
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToDiscountsCollectionViewController" {
             let discountCollectionVC = segue.destination as! DiscountsCollectionViewController
-            discountCollectionVC.discountDidSelected = discountDidSelectedFromDiscountCollectionVC
+            discountCollectionVC.discountDidSelected = discountDidSelectedFromDiscountCollectionVC(_:_:)
+            discountCollectionVC.tagIdButton = tagIdButtonCliked
         }
     }
     
     func discountDidSelectedFromDiscountCollectionVC(_ discount : String, _ id : Int) {
         if let discountValue = Float(discount) {
             items[id].tax = discountValue
+            tableView.reloadData()
         }
         // MARK: -
         // FIXME: Reload data on the tableview
