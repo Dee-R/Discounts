@@ -194,8 +194,8 @@
 		93DC5552257526E500079F3B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */,
 				934240C52577F5DC00DCF439 /* DiscountsFooterCell.swift */,
+				938FE4EE2574017D00D3B065 /* DiscountsViewController.swift */,
 				93FA2DB52589365E00F3C402 /* DiscountsCollectionViewController.swift */,
 			);
 			path = Controllers;

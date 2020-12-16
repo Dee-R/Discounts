@@ -1,21 +1,20 @@
 //
-//  ViewController.swift
+//  DiscountViewController.swift
 //  Discounts
 //
 //  Created by Eddy R on 29/11/2020.
-//
 
 import UIKit
 import EngineDiscounts
 import Combine
 
-
-class DiscountsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    // MARK: - PROPERTIES
+class DiscountsViewController: UIViewController {
+    // MARK: - 🉑 Setting PROPERTIES
     // Combine
     private let notificationCenter = NotificationCenter.default
-    private var subscriberCancellable = Set<AnyCancellable>() // for row
-    private var setOfCancellable = Set<AnyCancellable>() //data
+    private var subscriberCancellable = Set<AnyCancellable>() // list of subscriber cancel
+    private var setOfCancellable = Set<AnyCancellable>() // list of subscriber cancel
+    @Published var items : [EngineDiscountsItem] = [] // Model
     
     // UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
@@ -27,23 +26,24 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
     var footerCell: DiscountsFooterCell? = nil
     
     //Passing Button Cliked to DiscountCollectionViewController
-    var tagIdButton: Int?
+    var tagIdButtonCliked: Int?
     
-    //Others
-    var vc: DiscountsViewController!
+    // Others
+    // var vc: DiscountsViewController!
     var engineDiscount: EngineDiscounts?
     
-    // Model
-    @Published var items : [EngineDiscountsItem] = []
     
     
-    // MARK: - CYCLE LIFE
+    
+    // MARK: - ⚙️ Init
     required init?(coder: NSCoder) {
         super.init(coder: coder) // executed thx to ib
         engineDiscount = EngineDiscounts(delegate: self, items: items)
         engineDiscount?.calculateTotal()
         
     }
+    
+    // MARK: - ✅ Cycle Life
     override func viewDidLoad() {
         print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         setupDragAndDropCell()
         populateArrayOfItem() // add 2 row
         hideNavigationBar()
-        dismissKeyboardButton()
+        setupDismissKeyboardButton()
                         
         // get data for binding
         footerCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierFooter) as? DiscountsFooterCell
@@ -63,8 +63,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         binding()
     }
     
-    
-    // MARK: -  SETUP
+    // MARK: - 💻 Own M - SETUP
     fileprivate func hideNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -76,7 +75,7 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
             items.append(EngineDiscountsItem(price: 0, tax: 50))
         }
     }
-    fileprivate func dismissKeyboardButton() {
+    fileprivate func setupDismissKeyboardButton() {
         // when tap on the view => dismiss keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -96,8 +95,6 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dragDelegate = self
         tableView.dropDelegate = self
     }
-    
-    // Combine
     func binding() {
 //        $items.receive(on: DispatchQueue.main)
 //            .map {[weak self] (myItem) -> String in
@@ -156,24 +153,40 @@ class DiscountsViewController: UIViewController, UITableViewDataSource, UITableV
             .store(in: &setOfCancellable)
         
         
-    }
+    } // Combine
     
-    //Button to change discount
+
+    // MARK: - 🖐 Handle U
+    @IBAction func actionAddItem(_ sender: Any) {
+        // add default item
+        items.append(EngineDiscountsItem(price: 10, tax: 50))
+        
+        self.tableView.performBatchUpdates({
+            self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
+        }) { (true) in
+            self.tableView.reloadData() // reload data
+        }
+        // dissmiss
+        dismissKeyboard()
+        
+        // COMBINE
+        subscriberCancellable.removeAll()
+    } // Add row discount
     @IBAction func actionChangeDiscount(_ sender: UIButton) {
-        guard let tagButton = sender.superview?.tag else {return} // ✔︎ get ID Tag
-        self.tagIdButton = tagButton
+        guard let tagButton = sender.superview?.tag else {return} // ✔︎
+        self.tagIdButtonCliked = tagButton // ✔︎ id will send
         print(tagButton)
-//        performSegue(withIdentifier: "SegueToTaxViewController", sender: nil)
+        //performSegue(withIdentifier: "SegueToTaxViewController", sender: nil) // got to
     }
 }
 
+// MARK: - 👑 DELEGATE
 // MARK: - UITableViewDataSource & Delegate
-extension DiscountsViewController {
-    // Feed
+extension DiscountsViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
-    }
-
+    } // Feed
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
         
@@ -186,11 +199,7 @@ extension DiscountsViewController {
         cell.contentView.tag = indexPath.row
         
         return cell
-    }
-    
-    
-    
-    // Can Edit
+    } // Can Edit
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         if items.count != 1 || isEditingRow == true  {
@@ -198,9 +207,7 @@ extension DiscountsViewController {
         }
         
         return false
-    }
-    
-    // Delete / update
+    } // allow Editing
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
         // deleting
@@ -220,9 +227,7 @@ extension DiscountsViewController {
             }
         }
         
-    }
-    
-    // Footer
+    } // Delete / update
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         // setup a custom view for the footer
         print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
@@ -236,80 +241,46 @@ extension DiscountsViewController {
 //        footerCell?.totalToPay.text = "0"
 //        footerCell?.totalDiscounts.text = String(self.totalTaxPrice)
         return footerCell?.contentView
-    }
-    
-    // Move cell
+    } // FooterView
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    // Drag and drop
+    } // Moving cell
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let itemToMove = items[sourceIndexPath.row]
         //move the item to the destination
         items.insert(itemToMove, at: destinationIndexPath.row)
         //        remove
         items.remove(at: sourceIndexPath.row)
-    }
-    
-    // Add cell
-    @IBAction func actionAddItem(_ sender: Any) {
-        // add default item
-        items.append(EngineDiscountsItem(price: 10, tax: 50))
-        
-        self.tableView.performBatchUpdates({
-            self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
-        }) { (true) in
-            self.tableView.reloadData() // reload data
-        }
-        // dissmiss
-        dismissKeyboard()
-        
-        // COMBINE
-        subscriberCancellable.removeAll()
-    }
-    
-    // Scrolling dismiss
+    } // Drag and drop
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         view.endEditing(true)
-    }
+    } // Rejecting scroll
 }
 
 // MARK: - Drag And Drop
-extension DiscountsViewController: UITableViewDragDelegate {
+extension DiscountsViewController: UITableViewDragDelegate, UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         return [UIDragItem(itemProvider: NSItemProvider())]
-    }
-}
-
-extension DiscountsViewController: UITableViewDropDelegate {
+    } // Drag
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
-        
         if session.localDragSession != nil { // Drag originated from the same app.
             return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         }
-        
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
-    }
+    } // Drop
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
-    }
+    } // Drop
 }
-
-// MARK: - Engine Delegate
+// MARK: - Engine Discount Delegate
 extension DiscountsViewController: EngineDiscountDelegate {
     func showResultWith(sum: Float, sumTax: Float) {
         totalPrice = sum
         totalTaxPrice = sumTax
-    }
+    } // get Discount & Total To pay
 }
 
 // MARK: - cell text field delegate
 extension DiscountsViewController: UITextFieldDelegate {
-    // BEGIN
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        rightText = ""
-    }
-    // DURING
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var validatorUserInput:Bool = false
         guard let tagCell = textField.superview?.tag else {return true} // ✔︎ get ID Tag
@@ -351,9 +322,5 @@ extension DiscountsViewController: UITextFieldDelegate {
         } else {
             return validatorUserInput
         }
-    }
-    // AFTER
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print(items)
-    }
+    } // while editing
 }
