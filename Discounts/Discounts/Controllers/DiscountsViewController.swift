@@ -115,7 +115,7 @@ class DiscountsViewController: UIViewController {
     // MARK: - 🖐 Handle U
     @IBAction func actionAddItem(_ sender: Any) {
         // add default item
-        items.append(EngineDiscountsItem(price: 10, tax: 50))
+        items.append(EngineDiscountsItem(tax: 50))
         
         self.tableView.performBatchUpdates({
             self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
