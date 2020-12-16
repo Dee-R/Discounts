@@ -71,7 +71,7 @@ class DiscountsViewController: UIViewController {
     fileprivate func populateArrayOfItem() {
         // set array of item by default to 1
         if items.count == 0 {
-            items.append(EngineDiscountsItem(price: 0, tax: 50))
+            items.append(EngineDiscountsItem(price: 0, tax: 0))
         }
     }
     fileprivate func setupDismissKeyboardButton() {
@@ -115,7 +115,8 @@ class DiscountsViewController: UIViewController {
     // MARK: - 🖐 Handle U
     @IBAction func actionAddItem(_ sender: Any) {
         // add default item
-        items.append(EngineDiscountsItem(tax: 50))
+        items.append(EngineDiscountsItem(tax: 0)) // after
+//        items.append(EngineDiscountsItem(tax: 50)) before
         
         self.tableView.performBatchUpdates({
             self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
@@ -143,6 +144,7 @@ class DiscountsViewController: UIViewController {
         }
     }
     
+    // callback
     func discountDidSelectedFromDiscountCollectionVC(_ discount : String, _ id : Int) {
         if let discountValue = Float(discount) {
             items[id].tax = discountValue
@@ -162,7 +164,8 @@ extension DiscountsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
         
         cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(items[indexPath.row].price)
-        cell.discountButton.setTitle(items[indexPath.row].tax == 0.0 ? "0%" : String(items[indexPath.row].tax), for: .normal)
+        let discountRouded = roundf(items[indexPath.row].tax).clean
+        cell.discountButton.setTitle(items[indexPath.row].tax == 0.0 ? "0 %" : "\(discountRouded) %", for: .normal)
         
         // id tag TextField
         cell.priceTextField.delegate = self
@@ -170,7 +173,7 @@ extension DiscountsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.contentView.tag = indexPath.row
         
         return cell
-    } // Can Edit
+    } // // Feed
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         if items.count != 1 || isEditingRow == true  {
