@@ -72,7 +72,6 @@ class DiscountsViewController: UIViewController {
         // set array of item by default to 1
         if items.count == 0 {
             items.append(EngineDiscountsItem(price: 0, tax: 50))
-            items.append(EngineDiscountsItem(price: 0, tax: 50))
         }
     }
     fileprivate func setupDismissKeyboardButton() {
@@ -149,9 +148,6 @@ class DiscountsViewController: UIViewController {
             items[id].tax = discountValue
             tableView.reloadData()
         }
-        // MARK: -
-        // FIXME: Reload data on the tableview
-        // MARK: -
     }
 }
 
