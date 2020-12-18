@@ -41,7 +41,6 @@ class DiscountsViewController: UIViewController {
     
     // MARK: - ✅ Cycle Life
     override func viewDidLoad() {
-        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
         super.viewDidLoad()
         setupTitleNavigationBar()
         hideNavigationBar()
@@ -245,7 +244,7 @@ extension DiscountsViewController: UITextFieldDelegate {
         
         // SETUP
         let c = NSLocale.current.decimalSeparator ?? "."
-        let limitBeforeSeparator = 6
+        let limitBeforeSeparator = 9
         let limitAfterSeparator = 2
         
         // Validator
