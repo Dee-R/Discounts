@@ -29,11 +29,7 @@ class DiscountsViewController: UIViewController {
     var tagIdButtonCliked: Int?
     
     // Others
-    // var vc: DiscountsViewController!
     var engineDiscount: EngineDiscounts?
-    
-    
-    
     
     // MARK: - ⚙️ Init
     required init?(coder: NSCoder) {
@@ -47,23 +43,19 @@ class DiscountsViewController: UIViewController {
     override func viewDidLoad() {
         print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
         super.viewDidLoad()
-        self.title = "Discounts"
-        
-        setupDragAndDropCell()
-        populateArrayOfItem() // add 2 row
+        setupTitleNavigationBar()
         hideNavigationBar()
+        setupDragAndDropCell()
+        populateArrayOfItem()
         setupDismissKeyboardButton()
-                        
-        // get data for binding
-        footerCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierFooter) as? DiscountsFooterCell
-        footerCell?.totalToPay.text = "0.0 €" // set default Value
-        footerCell?.totalDiscounts.text = "0.0 €" // set default Value
-        
-        // bind data and ui
-        binding()
+        setupFooterTableView() // get data for binding
+        binding() // bind data and ui
     }
     
     // MARK: - 💻 Own M - SETUP
+    fileprivate func setupTitleNavigationBar() {
+        self.title = "Discounts"
+    }
     fileprivate func hideNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -71,7 +63,7 @@ class DiscountsViewController: UIViewController {
     fileprivate func populateArrayOfItem() {
         // set array of item by default to 1
         if items.count == 0 {
-            items.append(EngineDiscountsItem(price: 10, tax: 1))
+            items.append(EngineDiscountsItem())
         }
     }
     fileprivate func setupDismissKeyboardButton() {
@@ -84,18 +76,18 @@ class DiscountsViewController: UIViewController {
         // fire the dismiss
         view.endEditing(true)
         isEditingRow = false
-        // MARK: -
-        // TODO: calculate price and reduction
-        // TODO: reload tableview ( data )
-        // MARK: -
     }
     fileprivate func setupDragAndDropCell() {
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
         tableView.dropDelegate = self
     }
-    func binding() {
-        
+    fileprivate func setupFooterTableView() {
+        footerCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierFooter) as? DiscountsFooterCell
+        footerCell?.totalToPay.text = "0.0 €" // set default Value
+        footerCell?.totalDiscounts.text = "0.0 €" // set default Value
+    }
+    fileprivate func binding() {
         // MARK: - p: items s:Footer
         $items
             .receive(on: DispatchQueue.main)
@@ -104,11 +96,8 @@ class DiscountsViewController: UIViewController {
             } receiveValue: { [weak self] (arrItem) in
                 guard let this = self else { return }
                 this.engineDiscount?.calculateTotal(array: this.items)
-                // footer cell configuration
-                NSString(format: "%.2f", this.totalPrice) as String + "€"
-//                this.footerCell?.totalDiscounts.text = this.totalTaxPrice == 0.00 ?  "\(this.totalTaxPrice) €" :  "-\(this.totalTaxPrice) €"
-//                this.footerCell?.totalToPay.text = "\(this.totalPrice) €"
                 
+                // footer cell configuration
                 let totalDiscountPriceFormatedString = NSString(format: "%.2f", this.totalTaxPrice) as String
                 this.footerCell?.totalDiscounts.text = this.totalTaxPrice == 0.00 ?  "\(totalDiscountPriceFormatedString) €" :  "-\(totalDiscountPriceFormatedString) €"
                 this.footerCell?.totalToPay.text = NSString(format: "%.2f", this.totalPrice) as String + " €"
@@ -121,7 +110,6 @@ class DiscountsViewController: UIViewController {
     @IBAction func actionAddItem(_ sender: Any) {
         // add default item
         items.append(EngineDiscountsItem(tax: 0)) // after
-//        items.append(EngineDiscountsItem(tax: 50)) before
         
         self.tableView.performBatchUpdates({
             self.tableView.insertRows(at: [IndexPath(row: self.items.count - 1,section: 0)],with: .automatic)
@@ -161,14 +149,13 @@ class DiscountsViewController: UIViewController {
 // MARK: - 👑 DELEGATE
 // MARK: - UITableViewDataSource & Delegate
 extension DiscountsViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     } // Feed
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountCell", for: indexPath) as! DiscountCell
-        //feed Price
         
+        //feed Price
         cell.priceTextField.text = items[indexPath.row].price == 0.0 ? "" : String(format: "%.2f", items[indexPath.row].price)
         
         //feed discount
@@ -183,11 +170,9 @@ extension DiscountsViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     } // // Feed
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
         if items.count != 1 || isEditingRow == true  {
             return true
         }
-        
         return false
     } // allow Editing
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -208,20 +193,8 @@ extension DiscountsViewController: UITableViewDataSource, UITableViewDelegate {
                 // tableView.reloadData() // not the best way to call it direclty
             }
         }
-        
     } // Delete / update
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        // setup a custom view for the footer
-        print("  L\(#line) [✴️\(type(of: self))  ✴️\(#function) ] ")
-        
-        
-        // footerCell?.totalToPay.text = String(self.totalPrice)
-        // footerCell?.totalToPay.text = "0"
-
-        
-//        
-//        footerCell?.totalToPay.text = "0"
-//        footerCell?.totalDiscounts.text = String(self.totalTaxPrice)
         return footerCell?.contentView
     } // FooterView
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -245,7 +218,7 @@ extension DiscountsViewController: UITableViewDragDelegate, UITableViewDropDeleg
         return [UIDragItem(itemProvider: NSItemProvider())]
     } // Drag
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
-        if session.localDragSession != nil { // Drag originated from the same app.
+        if session.localDragSession != nil {
             return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         }
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
@@ -256,17 +229,8 @@ extension DiscountsViewController: UITableViewDragDelegate, UITableViewDropDeleg
 // MARK: - Engine Discount Delegate
 extension DiscountsViewController: EngineDiscountDelegate {
     func showResultWith(sum: Float, sumTax: Float) {
-        print("██░░░ L\(#line) 🚧🚧 sum : \(sum) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-        print("██░░░ L\(#line) 🚧🚧 sumTax: \(sumTax) 🚧🚧 [ \(type(of: self))  \(#function) ]")
-//        totalPrice = sum
-//        totalTaxPrice = sumTax
-//        totalPrice = (sum*100).rounded()/100
-//        totalTaxPrice = (sumTax*100).rounded()/100
-        
-                totalPrice = sum
-                totalTaxPrice = sumTax
-        
-        
+        totalPrice = sum
+        totalTaxPrice = sumTax
     } // get Discount & Total To pay
 }
 
@@ -315,7 +279,6 @@ extension DiscountsViewController: UITextFieldDelegate {
             return validatorUserInput
         }
     } // while editing
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let textFloat = textField.text else {return}
         if let f = Float(textFloat) {
