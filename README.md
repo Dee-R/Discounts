@@ -26,6 +26,7 @@ The heart of the functionality is accumulating discounts and having a quick purc
 
 ## Concepts used
 * MVC Design pattern
+* Regex
 * Custom UI Class
 * Combine
 * Custom Framework
